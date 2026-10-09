@@ -2,7 +2,8 @@ import { useState } from "react";
 import { ArrowDown, ArrowUpRight, Menu, X, MoveUpRight } from "lucide-react";
 import realCoreHeroUrl from "../../assets/images/real_field_core_staggered_ends_1791560367428.jpg";
 
-export const CONTACT_PHONE = "+77760721339";
+export const CONTACT_PHONE = "+77064101339";
+export const CONTACT_WHATSAPP_URL = "https://wa.me/message/J3WXITDCLBDZF1";
 export const CONTACT_EMAIL = "geocorevista@gmail.com";
 export function Brand({ light = false }: { light?: boolean }) {
   return (
@@ -41,7 +42,13 @@ export function Header() {
           ))}
         </nav>
         <div className="header-cta">
-          <a href={`tel:${CONTACT_PHONE}`}>{CONTACT_PHONE}</a>
+          <a
+            href={CONTACT_WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {CONTACT_PHONE}
+          </a>
           <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
         </div>
         <button
@@ -80,7 +87,12 @@ export function Hero() {
               Посмотреть возможности <ArrowDown size={18} />
             </a>
             <div className="hero-contacts">
-              <a className="text-link light" href={`tel:${CONTACT_PHONE}`}>
+              <a
+                className="text-link light"
+                href={CONTACT_WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {CONTACT_PHONE}
               </a>
               <a className="text-link light" href={`mailto:${CONTACT_EMAIL}`}>

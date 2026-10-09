@@ -10,7 +10,12 @@ import {
   Check,
   Layers3,
 } from "lucide-react";
-import { CONTACT_EMAIL, CONTACT_PHONE, Brand } from "./Intro";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  CONTACT_WHATSAPP_URL,
+  Brand,
+} from "./Intro";
 
 const capabilities = [
   [
@@ -246,7 +251,7 @@ export function FieldAndTeam() {
 const questions = [
   [
     "Это рабочее приложение или только презентация?",
-    "Этот сайт — обзор возможностей Geocore.vista. Здесь показаны настоящие экраны приложения, разрез и A4 акты, сформированные его инструментами на встроенном демо-проекте. Для подключения и получения доступа к рабочей системе свяжитесь с нами по телефону +77760721339 или почте geocorevista@gmail.com.",
+    "Этот сайт — обзор возможностей Geocore.vista. Здесь показаны настоящие экраны приложения, разрез и A4 акты, сформированные его инструментами на встроенном демо-проекте. Для подключения и получения доступа к рабочей системе свяжитесь с нами в WhatsApp по номеру +77064101339 или по почте geocorevista@gmail.com.",
   ],
   [
     "Можно ли работать на участке без интернета?",
@@ -311,7 +316,9 @@ export function Footer() {
             <div className="closing-links">
               <a
                 className="button button-copper"
-                href={`tel:${CONTACT_PHONE}`}
+                href={CONTACT_WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 {CONTACT_PHONE} <ArrowUpRight size={18} />
               </a>
@@ -322,7 +329,7 @@ export function Footer() {
                 {CONTACT_EMAIL} <ArrowUpRight size={18} />
               </a>
             </div>
-            <p>Почта и телефон для связи и подключения</p>
+            <p>WhatsApp и почта для связи и подключения</p>
           </div>
         </div>
       </section>
@@ -332,7 +339,13 @@ export function Footer() {
         </a>
         <span>Рабочая среда геологической документации</span>
         <div className="footer-contacts">
-          <a href={`tel:${CONTACT_PHONE}`}>{CONTACT_PHONE}</a>
+          <a
+            href={CONTACT_WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {CONTACT_PHONE}
+          </a>
           <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
         </div>
         <a href="#capabilities">
