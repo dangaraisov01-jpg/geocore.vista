@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { ArrowDown, ArrowUpRight, Menu, X, MoveUpRight } from "lucide-react";
-import realCoreHeroUrl from "../../assets/images/real_field_core_staggered_ends_1791560367428.jpg";
 
 export const CONTACT_PHONE = "+77064101339";
 export const CONTACT_WHATSAPP_URL = "https://wa.me/message/J3WXITDCLBDZF1";
@@ -111,12 +110,11 @@ export function Hero() {
         </div>
         <div className="hero-art">
           <img
-            src={realCoreHeroUrl}
+            src="/images/core-hero-real.jpg"
             alt="Образцы бурового керна с кварцевыми прожилками и зонами окисления"
             fetchPriority="high"
-            referrerPolicy="no-referrer"
             width="1200"
-            height="900"
+            height="896"
           />
           <div className="hero-art-top mono">
             <span>GEOCORE / MATERIAL STUDY</span>
