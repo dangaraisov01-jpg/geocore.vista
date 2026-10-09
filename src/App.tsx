@@ -1,5 +1,8 @@
 import { Header, Hero, Workflow } from "./components/showcase/Intro";
-import { ProductShowcase } from "./components/showcase/ProductShowcase";
+import {
+  ProductShowcase,
+  RealResults,
+} from "./components/showcase/ProductShowcase";
 import {
   FieldAndTeam,
   Output,
@@ -18,6 +21,7 @@ export default function App() {
         <Hero />
         <Workflow />
         <ProductShowcase />
+        <RealResults />
         <Output />
         <FieldAndTeam />
         <FAQ />

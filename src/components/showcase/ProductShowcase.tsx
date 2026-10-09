@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   FolderClosed,
   Map,
@@ -7,561 +7,133 @@ import {
   FileCheck2,
   ArrowUpRight,
   Check,
-  ChevronRight,
-  LayoutGrid,
-  List,
-  Search,
+  Maximize2,
+  Download,
+  X,
   ShieldCheck,
 } from "lucide-react";
-import {
-  DEMO_BOREHOLES,
-  DEMO_LITHO_INTERVALS,
-  DEMO_SAMPLES,
-  DEMO_DRILL_RUNS,
-} from "../../data/demoData";
 
 const tabs = [
   {
     name: "Проекты",
     icon: FolderClosed,
     title: "Порядок начинается с проекта.",
-    text: "Соберите участки, скважины и рабочие файлы в одном пространстве. Паспорт задаёт контекст для всех последующих записей.",
+    text: "Скважины, параметры и рабочие файлы в одном пространстве. Здесь показана настоящая папка встроенного демо-проекта приложения.",
     points: [
       "Папки проектов и участков",
       "Паспорта, координаты и статусы скважин",
       "Поиск и единая структура данных",
     ],
+    image: "projects-ui.webp",
+    caption: "Реальная папка проекта · Бурабай-Жалгызагаш",
   },
   {
     name: "Карта и разрез",
     icon: Map,
-    title: "Увидьте данные в пространстве.",
-    text: "Сопоставляйте положение устьев и геологию скважин. Переходите от координат к профилю, не теряя связь с первичными данными.",
+    title: "Геология, которую можно увидеть.",
+    text: "Настоящий разрез профиля ПР-10, построенный приложением по четырём демо-скважинам. Колонки, интервалы, траектории и условные обозначения — результат рабочего инструмента.",
     points: [
-      "Карта скважин и проектирование устьев",
-      "Расстояния и профили",
-      "Геологические разрезы и инклинометрия",
+      "Профили и выбор скважин",
+      "Высотные отметки и интервалы литологии",
+      "Петрографический крап и экспорт SVG / PNG / PDF",
     ],
+    image: "section-ui.webp",
+    caption: "Реальный интерфейс разреза · ПР-10 / 4 скважины",
   },
   {
     name: "Документация",
     icon: Layers3,
     title: "Каждое наблюдение — на своём месте.",
-    text: "Разделяйте описание первичной породы, изменений и минерализации. Сохраняйте общую глубинную привязку между журналами.",
+    text: "Реальный экран литологического журнала BUR-26-001. Глубинные интервалы, первичная порода и наблюдения сохраняются в связанном контексте скважины.",
     points: [
       "Литология · изменения · минерализация",
       "Прожилки · тектоника · техника · инклинометрия",
       "Интервалы, описания и проверка границ",
     ],
+    image: "journal-ui.webp",
+    caption: "Реальный журнал · BUR-26-001",
   },
   {
     name: "Керн и QA/QC",
     icon: Microscope,
     title: "От рейса до контрольной пробы.",
-    text: "Свяжите выход и состояние керна с опробованием. Контрольные образцы и дубликаты остаются частью общей истории скважины.",
+    text: "Рабочий экран опробования из приложения, а не условная таблица. Контрольные образцы и дубликаты остаются частью общей истории скважины.",
     points: [
       "Drilling Parameters и геомеханика",
       "TCR / SCR / RQD и параметры ISRM",
       "Рядовые пробы, CRM, Blank и дубликаты",
     ],
+    image: "sampling-ui.webp",
+    caption: "Реальный модуль опробования · BUR-26-001",
   },
   {
     name: "Документы",
     icon: FileCheck2,
-    title: "Данные становятся результатом.",
-    text: "Готовьте акты и лабораторные документы из собранных данных. Выгружайте таблицы для дальнейшей работы в профильном ПО.",
+    title: "Не макет. Готовый документ.",
+    text: "Так выглядит настоящий генератор производственных актов. Ниже можно рассмотреть исходные A4 формы и скачать полный PDF, сформированный самим приложением.",
     points: [
       "Акты заложения, замера и закрытия",
       "Рекультивация и инклинометрия",
-      "Документы опробования и таблицы экспорта",
+      "6 страниц в демонстрационном PDF-пакете",
     ],
+    image: "acts-ui.webp",
+    caption: "Реальный генератор актов · BUR-26-001",
   },
 ];
 
-function SceneFrame({
+export function ImageViewer({
+  src,
+  alt,
   title,
-  children,
+  page = false,
 }: {
+  src: string;
+  alt: string;
   title: string;
-  children: React.ReactNode;
+  page?: boolean;
 }) {
+  const dialog = useRef<HTMLDialogElement>(null);
   return (
-    <div className="scene-frame">
-      <div className="scene-top">
-        <span className="scene-dots">
-          <i />
-          <i />
-          <i />
+    <>
+      <button
+        type="button"
+        className={`actual-image-button ${page ? "actual-page" : ""}`}
+        onClick={() => dialog.current?.showModal()}
+        aria-label={`Открыть в полном размере: ${title}`}
+      >
+        <img src={src} alt={alt} loading="lazy" />
+        <span className="image-expand">
+          <Maximize2 size={15} /> Рассмотреть
         </span>
-        <span>{title}</span>
-        <span className="demo-badge">DEMO</span>
-      </div>
-      {children}
-      <div className="scene-foot">
-        <span>
-          <span className="status-dot" /> Вымышленные данные
-        </span>
-        <span>Презентационный экран</span>
-      </div>
-    </div>
-  );
-}
-function ProjectsScene() {
-  return (
-    <SceneFrame title="Рабочее пространство / Сарыарка-Север">
-      <div className="project-scene">
-        <aside className="scene-sidebar">
-          <span className="tiny-label">ПРОЕКТЫ</span>
-          {["Сарыарка-Север", "Прибалхашье-Восток", "Мугоджарский контур"].map(
-            (n, i) => (
-              <div
-                className={i === 0 ? "sidebar-row active" : "sidebar-row"}
-                key={n}
-              >
-                <FolderClosed size={14} />
-                {n}
-              </div>
-            ),
-          )}
-          <div className="sidebar-bottom">
-            <ShieldCheck size={15} /> Доступ компании
-          </div>
-        </aside>
-        <div className="scene-content">
-          <div className="scene-title">
-            <div>
-              <span className="tiny-label">ЦЕНТРАЛЬНЫЙ КАЗАХСТАН</span>
-              <h4>Сарыарка-Север</h4>
-            </div>
-            <span className="scene-icon">
-              <LayoutGrid size={16} />
-            </span>
-          </div>
-          <div className="scene-metrics">
-            <div>
-              <b>4</b>
-              <span>скважины</span>
-            </div>
-            <div>
-              <b>
-                1 210<span> м</span>
-              </b>
-              <span>проходка</span>
-            </div>
-            <div>
-              <b>164</b>
-              <span>пробы</span>
-            </div>
-          </div>
-          <div className="scene-search">
-            <Search size={13} /> Скважины проекта{" "}
-            <span>
-              <List size={14} />
-            </span>
-          </div>
-          <div className="mini-table">
-            <div className="mini-row table-head">
-              <span>СКВАЖИНА</span>
-              <span>ГЛУБИНА</span>
-              <span>СТАТУС</span>
-            </div>
-            {DEMO_BOREHOLES.slice(0, 4).map((h) => (
-              <div className="mini-row" key={h.bhid}>
-                <strong>{h.bhid}</strong>
-                <span>{h.actualDepth.toFixed(1)} м</span>
-                <span
-                  className={
-                    h.status === "Завершена" ? "pill" : "pill pill-neutral"
-                  }
-                >
-                  {h.status}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </SceneFrame>
-  );
-}
-function GisScene() {
-  return (
-    <SceneFrame title="GIS / Геологический профиль I–I">
-      <div className="gis-scene">
-        <div className="map-graphic">
-          <svg
-            viewBox="0 0 650 255"
-            role="img"
-            aria-label="Схематическая карта четырёх скважин и профиля I–I на вымышленном участке"
+      </button>
+      <dialog
+        ref={dialog}
+        className="actual-dialog"
+        onClick={(e) => {
+          if (e.target === e.currentTarget) dialog.current?.close();
+        }}
+      >
+        <div className="actual-dialog-top">
+          <strong>{title}</strong>
+          <a href={src} target="_blank" rel="noopener noreferrer">
+            Исходное изображение <ArrowUpRight size={15} />
+          </a>
+          <button
+            type="button"
+            onClick={() => dialog.current?.close()}
+            aria-label="Закрыть просмотр"
           >
-            <defs>
-              <pattern
-                id="mapGrid"
-                width="32"
-                height="32"
-                patternUnits="userSpaceOnUse"
-              >
-                <path
-                  d="M 32 0 L 0 0 0 32"
-                  fill="none"
-                  stroke="#d4ded7"
-                  strokeWidth="0.5"
-                />
-              </pattern>
-            </defs>
-            <rect width="650" height="255" fill="#edf0e7" />
-            <rect width="650" height="255" fill="url(#mapGrid)" />
-            {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-              <path
-                key={i}
-                d={`M -60 ${45 + i * 29} Q 120 ${-60 + i * 21}, 240 ${65 + i * 22} T 500 ${115 + i * 21} T 760 ${55 + i * 30}`}
-                fill="none"
-                stroke="#c3ccb8"
-                strokeWidth="1.5"
-              />
-            ))}
-            <path
-              d="M80 190 Q180 160 275 120 T540 92"
-              fill="none"
-              stroke="#b5c7c8"
-              strokeWidth="14"
-              opacity=".55"
-            />
-            <path
-              d="M155 168 L475 77"
-              stroke="#c9613c"
-              strokeWidth="1.5"
-              strokeDasharray="6 5"
-            />
-            {[
-              [170, 163],
-              [270, 135],
-              [366, 108],
-              [462, 81],
-            ].map(([x, y], i) => (
-              <g key={i}>
-                <circle cx={x} cy={y} r="11" fill="#142824" opacity=".10" />
-                <circle cx={x} cy={y} r="4" fill="#142824" />
-                <text
-                  x={x - 25}
-                  y={y - 20}
-                  fill="#294139"
-                  fontSize="10"
-                  fontFamily="monospace"
-                >
-                  SRK-{101 + i}
-                </text>
-              </g>
-            ))}
-            <text
-              x="40"
-              y="30"
-              fontSize="10"
-              fill="#65766b"
-              fontFamily="monospace"
-            >
-              ПРОФИЛЬ I–I
-            </text>
-            <path
-              d="M605 60 L605 25 L600 34 M605 25 L610 34"
-              stroke="#142824"
-              fill="none"
-            />
-            <text x="601" y="18" fontSize="10" fill="#142824">
-              N
-            </text>
-            <path
-              d="M40 223 H110 M40 219 V227 M110 219 V227"
-              stroke="#142824"
-            />
-            <text x="40" y="241" fontSize="9" fill="#142824">
-              200 м
-            </text>
-          </svg>
-          <div className="map-caption">
-            <Map size={13} /> Схема расположения
-          </div>
+            <X size={22} />
+          </button>
         </div>
-        <div className="section-graphic">
-          <div className="section-graphic-heading">
-            <span>РАЗРЕЗ ПО ПРОФИЛЮ</span>
-            <span>Литология + траектории</span>
-          </div>
-          <svg
-            viewBox="0 0 650 160"
-            role="img"
-            aria-label="Схематический разрез с литологическими границами и траекториями скважин"
-          >
-            <path
-              d="M0 15 Q180 5 340 22 T650 8 V50 Q420 75 250 49 T0 65Z"
-              fill="#d8d4c1"
-            />
-            <path
-              d="M0 65 Q170 25 340 60 T650 50 V95 Q420 120 210 87 T0 100Z"
-              fill="#8e9e93"
-            />
-            <path d="M0 100 Q190 75 345 106 T650 95 V160 H0Z" fill="#c6a188" />
-            <path
-              d="M260 51 L342 60 L457 160 H358Z"
-              fill="#b77354"
-              opacity=".8"
-            />
-            {[120, 240, 365, 490].map((x, i) => (
-              <g key={x}>
-                <path
-                  d={`M${x} 17 Q${x + 15} 85 ${x + 65} 146`}
-                  stroke="#142824"
-                  fill="none"
-                  strokeWidth="2"
-                />
-                <circle cx={x} cy="17" r="3" fill="#142824" />
-                <text
-                  x={x - 21}
-                  y="11"
-                  fontSize="9"
-                  fill="#142824"
-                  fontFamily="monospace"
-                >
-                  {101 + i}
-                </text>
-              </g>
-            ))}
-          </svg>
+        <div className="actual-dialog-content">
+          <img src={src} alt={alt} />
         </div>
-      </div>
-    </SceneFrame>
+      </dialog>
+    </>
   );
 }
-function LogScene() {
-  const rows = DEMO_LITHO_INTERVALS["BH-SRK-101"];
-  return (
-    <SceneFrame title="BH-SRK-101 / Геологическая документация">
-      <div className="log-scene">
-        <div className="scene-title">
-          <div>
-            <span className="tiny-label">ПАСПОРТ СКВАЖИНЫ</span>
-            <h4>
-              BH-SRK-101 <small>320.0 м</small>
-            </h4>
-          </div>
-          <span className="pill">
-            <Check size={11} /> Проверено
-          </span>
-        </div>
-        <div className="module-strip">
-          {[
-            "Литология",
-            "Изменения",
-            "Минерализация",
-            "Прожилки",
-            "Тектоника",
-            "Техника",
-            "Инклинометрия",
-          ].map((s, i) => (
-            <span className={i === 0 ? "selected" : ""} key={s}>
-              {s}
-            </span>
-          ))}
-        </div>
-        <div className="litho-layout">
-          <div className="litho-track">
-            <span className="tiny-label">ГЛУБИНА / М</span>
-            {rows.map((r) => (
-              <div
-                className="litho-block"
-                key={r.id}
-                style={{
-                  flexBasis: `${((r.to - r.from) / 320) * 100}%`,
-                  background: r.colorHex,
-                }}
-              >
-                <span>{r.from}</span>
-              </div>
-            ))}
-            <span className="track-end">320</span>
-          </div>
-          <div className="litho-rows">
-            <div className="litho-row table-head">
-              <span>ОТ — ДО / М</span>
-              <span>ПОРОДА / КОД</span>
-            </div>
-            {rows.map((r) => (
-              <div className="litho-row" key={r.id}>
-                <span className="mono">
-                  {r.from.toFixed(1)} — {r.to.toFixed(1)}
-                </span>
-                <div>
-                  <b>{r.rockName}</b>
-                  <small>
-                    {r.code} · {r.grainSize}
-                  </small>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </SceneFrame>
-  );
-}
-function SamplingScene() {
-  return (
-    <SceneFrame title="BH-SRK-101 / Керн и опробование">
-      <div className="sampling-scene">
-        <div className="scene-title">
-          <div>
-            <span className="tiny-label">ИНТЕРВАЛ 125.0 — 146.0 М</span>
-            <h4>Качество керна</h4>
-          </div>
-          <span className="tiny-label">HQ → NQ</span>
-        </div>
-        <div className="core-chart">
-          <div className="chart-ticks mono">
-            <span>100%</span>
-            <span>50%</span>
-            <span>0%</span>
-          </div>
-          <div className="chart-bars">
-            {DEMO_DRILL_RUNS.map((r) => (
-              <div className="run-bars" key={r.runNumber}>
-                <div className="bar-set">
-                  <i style={{ height: `${r.tcrPct}%` }} />
-                  <i style={{ height: `${r.scrPct}%` }} />
-                  <i style={{ height: `${r.rqdPct}%` }} />
-                </div>
-                <span>{r.runNumber}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="chart-legend">
-          <span>
-            <i />
-            TCR — общий выход
-          </span>
-          <span>
-            <i />
-            SCR — столбиковый
-          </span>
-          <span>
-            <i />
-            RQD — качество
-          </span>
-        </div>
-        <div className="samples-heading">
-          <b>Ведомость проб</b>
-          <span>QA/QC включён в последовательность</span>
-        </div>
-        <div className="samples-table">
-          {DEMO_SAMPLES.slice(0, 6).map((r) => (
-            <div key={r.sampleId} className="sample-row">
-              <span className="mono">{r.sampleId}</span>
-              <span>
-                {r.from === null
-                  ? "—"
-                  : `${r.from.toFixed(1)} — ${r.to!.toFixed(1)} м`}
-              </span>
-              <span
-                className={
-                  r.sampleType === "CRM" ? "pill pill-copper" : "sample-type"
-                }
-              >
-                {r.sampleType === "Рядовая керновая (1/2 керна)"
-                  ? "Рядовая"
-                  : r.sampleType}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </SceneFrame>
-  );
-}
-function DocumentScene() {
-  return (
-    <SceneFrame title="Документация / Готовые формы">
-      <div className="document-scene">
-        <div className="doc-list">
-          <span className="tiny-label">ДОКУМЕНТЫ СКВАЖИНЫ</span>
-          {[
-            "Акт заложения",
-            "Контрольный замер",
-            "Закрытие / консервация",
-            "Рекультивация",
-            "Инклинометрия",
-          ].map((n, i) => (
-            <div
-              key={n}
-              className={i === 0 ? "doc-list-row selected" : "doc-list-row"}
-            >
-              <FileCheck2 size={14} />
-              <span>{n}</span>
-              {i === 0 && <ChevronRight size={13} />}
-            </div>
-          ))}
-          <div className="doc-export">
-            <span className="tiny-label">ТАБЛИЧНЫЕ ДАННЫЕ</span>
-            <b>CSV / XLSX</b>
-            <span>Для дальнейшей обработки</span>
-          </div>
-        </div>
-        <div className="paper-wrap">
-          <article className="paper">
-            <div className="paper-id">ГЕОЛОГИЧЕСКАЯ ДОКУМЕНТАЦИЯ / ДЕМО</div>
-            <h5>АКТ</h5>
-            <p className="paper-sub">о заложении скважины</p>
-            <div className="paper-date">12 сентября 2026 г.</div>
-            <div className="paper-field">
-              <span>Проект</span>
-              <b>Сарыарка-Север</b>
-            </div>
-            <div className="paper-field">
-              <span>Скважина</span>
-              <b>BH-SRK-101</b>
-            </div>
-            <div className="paper-coords">
-              <div>
-                <span>X</span>
-                <b>452 180</b>
-              </div>
-              <div>
-                <span>Y</span>
-                <b>5 312 410</b>
-              </div>
-              <div>
-                <span>Z</span>
-                <b>642.5</b>
-              </div>
-            </div>
-            <div className="paper-field">
-              <span>Проектная глубина</span>
-              <b>320.0 м</b>
-            </div>
-            <div className="paper-field">
-              <span>Азимут / наклон</span>
-              <b>135° / −75°</b>
-            </div>
-            <p className="paper-note">
-              Документ формируется на основе паспорта скважины и реквизитов
-              проекта.
-            </p>
-            <div className="paper-sign">
-              <span>Полевой геолог</span>
-              <i />
-            </div>
-            <div className="paper-sign">
-              <span>Буровой мастер</span>
-              <i />
-            </div>
-            <div className="paper-bottom">
-              Пример формы · не официальный документ
-            </div>
-          </article>
-        </div>
-      </div>
-    </SceneFrame>
-  );
-}
+
 export function ProductShowcase() {
   const [active, setActive] = useState(0);
   const item = tabs[active];
@@ -570,7 +142,7 @@ export function ProductShowcase() {
       <div className="wrap">
         <div className="product-heading">
           <div>
-            <span className="eyebrow">Возможности / обзор системы</span>
+            <span className="eyebrow">Возможности / реальный интерфейс</span>
             <h2>
               Сложная работа.
               <br />
@@ -578,9 +150,9 @@ export function ProductShowcase() {
             </h2>
           </div>
           <p>
-            Пять рабочих областей.
+            Не иллюстрации интерфейса.
             <br />
-            Один связанный набор данных.
+            Настоящие экраны приложения.
           </p>
         </div>
         <div
@@ -639,22 +211,27 @@ export function ProductShowcase() {
                 </li>
               ))}
             </ul>
-            <a className="text-link" href="#output">
-              Что получится на выходе <ArrowUpRight size={16} />
+            <a className="text-link" href="#real-results">
+              Посмотреть готовые результаты <ArrowUpRight size={16} />
             </a>
           </div>
           <div className="product-visual">
-            {active === 0 ? (
-              <ProjectsScene />
-            ) : active === 1 ? (
-              <GisScene />
-            ) : active === 2 ? (
-              <LogScene />
-            ) : active === 3 ? (
-              <SamplingScene />
-            ) : (
-              <DocumentScene />
-            )}
+            <div className="actual-screen">
+              <div className="actual-screen-bar">
+                <span className="mono">GEOCORE.VISTA / РЕАЛЬНЫЙ ИНТЕРФЕЙС</span>
+                <span className="actual-demo">ДЕМО-ДАННЫЕ</span>
+              </div>
+              <ImageViewer
+                key={item.image}
+                src={`/examples/${item.image}`}
+                title={item.caption}
+                alt={item.caption}
+              />
+              <div className="actual-screen-caption">
+                <span>{item.caption}</span>
+                <Maximize2 size={13} />
+              </div>
+            </div>
           </div>
         </div>
         {tabs.map((_, i) =>
@@ -669,11 +246,151 @@ export function ProductShowcase() {
           ) : null,
         )}
         <div className="product-caption">
-          <span className="mono">ОДНО ПРИЛОЖЕНИЕ / ОБЩИЙ КОНТЕКСТ</span>
+          <span className="mono">
+            НАСТОЯЩИЕ ИНСТРУМЕНТЫ / ДЕМОНСТРАЦИОННЫЕ ДАННЫЕ
+          </span>
           <p>
-            Экраны адаптированы для обзора. Все проекты и значения в
-            демонстрации вымышлены.
+            Снято в локальной сборке приложения. Встроенный демо-проект, без
+            раскрытия пользовательских данных.
           </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const results = [
+  {
+    name: "Геологический разрез",
+    file: "section-export.webp",
+    title: "Разрез, который строит приложение.",
+    text: "Профиль ПР-10: четыре скважины с глубинами 350–550 м. Реальные литологические интервалы и петрографический крап из встроенного демо, шкала высот и легенда исходного экспорта.",
+    download: "geocore-section.svg",
+    format: "Скачать разрез SVG",
+    detail:
+      "Исходный экспорт renderer приложения · 4 скважины / 11 обозначений",
+    page: false,
+  },
+  {
+    name: "Заложение",
+    file: "act-spudding.webp",
+    title: "Акт о заложении скважины.",
+    text: "Полная форма A4: комиссия, координаты устья, параметры и назначение скважины, требования к выходу керна и строки подписей. Страница извлечена из PDF, сформированного приложением.",
+    download: "geocore-demo-acts.pdf",
+    format: "Скачать пакет актов PDF",
+    detail: "BUR-26-001 · страница 1 / 6 · оригинальный PDF",
+    page: true,
+  },
+  {
+    name: "Контрольный замер",
+    file: "act-depth-check.webp",
+    title: "Акт контрольного замера глубины.",
+    text: "Сопоставление глубины по буровому журналу и контрольному замеру, фиксация расхождения и фактически принятой глубины. Та же форма, которую пользователь получает при экспорте.",
+    download: "geocore-demo-acts.pdf",
+    format: "Скачать пакет актов PDF",
+    detail: "BUR-26-001 · страница 2 / 6 · оригинальный PDF",
+    page: true,
+  },
+  {
+    name: "Закрытие",
+    file: "act-closure.webp",
+    title: "Закрытие и консервация.",
+    text: "Производственные сведения, фактическое положение и глубина, выход керна, конструкция скважины и мероприятия при закрытии. Акт занимает две страницы исходного пакета.",
+    download: "geocore-demo-acts.pdf",
+    format: "Скачать пакет актов PDF",
+    detail: "BUR-26-001 · страницы 3–4 / 6 · показана первая страница",
+    page: true,
+  },
+  {
+    name: "Рекультивация",
+    file: "act-reclamation.webp",
+    title: "Акт рекультивации площадки.",
+    text: "Полная форма по восстановлению буровой площадки: участок, комиссия, площадь и состояние работ. Никакого сокращённого макета — исходная страница из приложения.",
+    download: "geocore-demo-acts.pdf",
+    format: "Скачать пакет актов PDF",
+    detail: "BUR-26-001 · страница 5 / 6 · оригинальный PDF",
+    page: true,
+  },
+  {
+    name: "Инклинометрия",
+    file: "act-inclinometry.webp",
+    title: "Замеры искривления скважины.",
+    text: "Таблица глубин, углов наклона и азимутов, сведения о приборе и исполнителе. Результат готов к просмотру и печати в формате A4.",
+    download: "geocore-demo-acts.pdf",
+    format: "Скачать пакет актов PDF",
+    detail: "BUR-26-001 · страница 6 / 6 · оригинальный PDF",
+    page: true,
+  },
+];
+export function RealResults() {
+  const [selected, setSelected] = useState(0);
+  const result = results[selected];
+  return (
+    <section id="real-results" className="real-results wrap">
+      <div className="real-results-heading">
+        <div>
+          <span className="eyebrow">Доказательство — в результате</span>
+          <h2>
+            Откройте то,
+            <br />
+            что получите в работе.
+          </h2>
+        </div>
+        <p>
+          Настоящий экспорт. Полные документы.
+          <br />
+          Можно рассмотреть и скачать.
+        </p>
+      </div>
+      <div className="result-selectors" aria-label="Выбор результата">
+        {results.map((r, i) => (
+          <button
+            type="button"
+            key={r.name}
+            className={i === selected ? "selected" : ""}
+            aria-pressed={i === selected}
+            onClick={() => setSelected(i)}
+          >
+            {i === 0 ? <Map size={14} /> : <FileCheck2 size={14} />} {r.name}
+          </button>
+        ))}
+      </div>
+      <div
+        className={`result-presentation ${result.page ? "result-document" : ""}`}
+      >
+        <div className="result-description">
+          <span className="mono result-label">
+            {result.page
+              ? "ПРОИЗВОДСТВЕННЫЙ АКТ / A4"
+              : "ГЕОЛОГИЧЕСКИЙ РАЗРЕЗ / SVG"}
+          </span>
+          <h3>{result.title}</h3>
+          <p>{result.text}</p>
+          <a
+            className="button result-download"
+            href={`/examples/${result.download}`}
+            download
+          >
+            <Download size={17} />
+            {result.format}
+          </a>
+          <span className="result-provenance">{result.detail}</span>
+          <div className="result-privacy">
+            <ShieldCheck size={15} />
+            <span>
+              Публичный встроенный демо-проект. Производственные данные клиентов
+              не используются.
+            </span>
+          </div>
+        </div>
+        <div className="result-preview">
+          <ImageViewer
+            key={result.file}
+            src={`/examples/${result.file}`}
+            alt={result.title}
+            title={result.title}
+            page={result.page}
+          />
         </div>
       </div>
     </section>

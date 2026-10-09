@@ -41,6 +41,40 @@ const assert = require("node:assert/strict");
         `Overflow at ${width} tab ${i}`,
       );
     }
+    const resultButtons = page.locator(".result-selectors button");
+    for (let i = 0; i < 6; i++) {
+      await resultButtons.nth(i).click();
+      await page
+        .locator(".result-preview img")
+        .first()
+        .scrollIntoViewIfNeeded();
+      await page.waitForFunction(() => {
+        const img = document.querySelector(".result-preview img");
+        return img.complete && img.naturalWidth > 0;
+      });
+      assert.equal(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth > window.innerWidth,
+        ),
+        false,
+        `Results overflow ${width}/${i}`,
+      );
+    }
+    await page.locator(".result-preview .actual-image-button").click();
+    await page.locator(".result-preview dialog[open]").waitFor();
+    await page.keyboard.press("Escape");
+    assert.equal(await page.locator("dialog[open]").count(), 0);
+    await resultButtons.nth(0).click();
+    if (width === 1440)
+      await page
+        .locator(".real-results")
+        .screenshot({ path: "/tmp/real-results-site.png" });
+    if (width === 390) {
+      await resultButtons.nth(1).click();
+      await page
+        .locator(".real-results")
+        .screenshot({ path: "/tmp/real-results-mobile.png" });
+    }
     await page.locator("#tab-2").focus();
     await page.keyboard.press("ArrowRight");
     assert.equal(
@@ -77,7 +111,7 @@ const assert = require("node:assert/strict");
       );
     }
     console.log(
-      `PASS ${width}px: layout, hero, tabs, keyboard, FAQ, links, mobile menu`,
+      `PASS ${width}px: layout, hero, tabs, real results, image viewer, keyboard, FAQ, links, mobile menu`,
     );
     await page.close();
   }
