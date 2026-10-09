@@ -1,32 +1,32 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import { TopNav, HeroSection } from './components/NavbarAndHero';
-import { ProjectsAndGisSection } from './components/ProjectsAndGisSection';
-import { LogsAndSamplingSection } from './components/LogsAndSamplingSection';
-import { ExportAndParserSection } from './components/ExportAndParserSection';
-import { OfflineRolesAndFaqSection } from './components/OfflineRolesAndFaqSection';
-import { ContinuousEarthBackground } from './components/LithoColumnDecor';
+import { Header, Hero, Workflow } from "./components/showcase/Intro";
+import {
+  ProductShowcase,
+  RealResults,
+} from "./components/showcase/ProductShowcase";
+import {
+  FieldAndTeam,
+  Output,
+  FAQ,
+  Footer,
+} from "./components/showcase/Details";
 
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#231C16] text-[#14171A] relative">
-      <TopNav />
-
-      {/* Единое бесшовное полотно геологического разреза на весь сайт (не привязано к отдельным пунктам) */}
-      <div className="relative flex-1">
-        <ContinuousEarthBackground />
-
-        <main className="relative z-10 flex-1">
-          <HeroSection />
-          <ProjectsAndGisSection />
-          <LogsAndSamplingSection />
-          <ExportAndParserSection />
-          <OfflineRolesAndFaqSection />
-        </main>
-      </div>
-    </div>
+    <>
+      <a className="skip-link" href="#main">
+        Перейти к содержимому
+      </a>
+      <Header />
+      <main id="main">
+        <Hero />
+        <Workflow />
+        <ProductShowcase />
+        <RealResults />
+        <Output />
+        <FieldAndTeam />
+        <FAQ />
+        <Footer />
+      </main>
+    </>
   );
 }

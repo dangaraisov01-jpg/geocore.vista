@@ -1,0 +1,13 @@
+{
+  "sourceRepository": "dangaraisov01-jpg/GEOLOG-STUDIO",
+  "sourceCommit": "3c9b8699969c2367be7a44ab02368372067ce69d",
+  "dataset": "Built-in public showcase: Бурабай-Жалгызагаш / BUR-26-001 and profile selected by original UI",
+  "capture": "Fresh isolated guest browser; remote API calls blocked; login overlay omitted; local read-only demo role fixture only; no source application edits",
+  "sectionExport": {
+    "renderer": "buildBoreholeCrossSectionSvg(exportMode:true)",
+    "holes": 4,
+    "legendItems": 11
+  },
+  "actExport": "GeoLogActs.downloadHoleActPdf(publicDemoHole, ALL), original A4 templates",
+  "runtimeErrors": []
+}
