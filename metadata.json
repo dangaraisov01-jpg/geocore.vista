@@ -1,0 +1,6 @@
+{
+  "name": "Geocore.vista — Обзор GeoLog Studio",
+  "description": "Демонстрационный сайт-портфолио приложения GeoLog Studio (Geocore.vista) для ведения геологических проектов, данных по скважинам, GIS-визуализации, опробования и подготовки актов.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

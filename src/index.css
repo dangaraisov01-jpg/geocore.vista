@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Unbounded', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #1A1613;
+    color: #14171A;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+  }
+
+  code, pre, .font-mono, .tabular-nums {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Реалистичное 3D-вращение вертикального цилиндра буровой штанги вокруг своей оси
+   (перемещение косых спиральных канавок по горизонтали под неподвижным цилиндрическим бликом) */
+@keyframes spinCylinderX {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 28px 0px;
+  }
+}
+
+/* Вращение лопастей и алмазных резцов буровой коронки вокруг вертикальной оси */
+@keyframes spinBitCuttersX {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(24px);
+  }
+}
+
+/* Осевая ударно-вращательная вибрация долота/коронки при бурении породы */
+@keyframes drillBitPercussion {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  25% {
+    transform: translateY(1.5px);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+  75% {
+    transform: translateY(2px);
+  }
+}
+
+/* Вынос бурового шлама и промывочного раствора вверх по кольцевому пространству ствола */
+@keyframes mudParticlesUp {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 0px -72px;
+  }
+}
+
+/* Разлёт выбуренной породы и искр из-под резцов коронки */
+@keyframes chipFlyLeft {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate(-12px, -18px) scale(0.4);
+    opacity: 0;
+  }
+}
+
+@keyframes chipFlyRight {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate(12px, -18px) scale(0.4);
+    opacity: 0;
+  }
+}
+
+.drill-rod-spinning {
+  background-image: repeating-linear-gradient(
+    -62deg,
+    #334155 0px,
+    #334155 4px,
+    #94A3B8 4px,
+    #E2E8F0 7px,
+    #475569 10px,
+    #1E293B 14px
+  );
+  background-size: 28px 28px;
+  animation: spinCylinderX 0.45s linear infinite;
+}
+
+.drill-stabilizer-spinning {
+  background-image: repeating-linear-gradient(
+    -55deg,
+    #1E293B 0px,
+    #1E293B 5px,
+    #F59E0B 5px,
+    #FEF08A 8px,
+    #B45309 11px,
+    #0F172A 14px
+  );
+  background-size: 28px 28px;
+  animation: spinCylinderX 0.35s linear infinite;
+}
+
+.mud-annulus-upflow {
+  background-image:
+    radial-gradient(circle at 18% 25%, rgba(250, 204, 21, 0.75) 1.5px, transparent 2px),
+    radial-gradient(circle at 82% 55%, rgba(56, 189, 248, 0.65) 1.5px, transparent 2px),
+    radial-gradient(circle at 22% 78%, rgba(217, 119, 6, 0.8) 2px, transparent 2.5px),
+    radial-gradient(circle at 78% 18%, rgba(226, 232, 240, 0.65) 1.5px, transparent 2px);
+  background-size: 100% 72px;
+  animation: mudParticlesUp 0.95s linear infinite;
+}
+
+.animate-bit-cutters {
+  animation: spinBitCuttersX 0.28s linear infinite;
+}
+
+.animate-bit-percussion {
+  animation: drillBitPercussion 0.12s ease-in-out infinite;
+}
+
+.animate-chip-left {
+  animation: chipFlyLeft 0.55s ease-out infinite;
+}
+
+.animate-chip-right {
+  animation: chipFlyRight 0.55s ease-out infinite;
+  animation-delay: 0.22s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
