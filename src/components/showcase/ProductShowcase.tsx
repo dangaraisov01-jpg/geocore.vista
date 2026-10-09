@@ -12,74 +12,9 @@ import {
   X,
   ShieldCheck,
 } from "lucide-react";
+import { useI18n } from "../../i18n";
 
-const tabs = [
-  {
-    name: "Проекты",
-    icon: FolderClosed,
-    title: "Структура проектов и скважин.",
-    text: "Скважины, параметры и рабочие файлы в едином пространстве. Здесь показана папка встроенного демонстрационного проекта приложения.",
-    points: [
-      "Папки проектов и участков",
-      "Паспорта, координаты и статусы скважин",
-      "Поиск и единая структура данных",
-    ],
-    image: "projects-ui.webp",
-    caption: "Реальная папка проекта · Бурабай-Жалгызагаш",
-  },
-  {
-    name: "Карта и разрез",
-    icon: Map,
-    title: "Построение разрезов по профилю.",
-    text: "Разрез профиля ПР-10, построенный приложением по четырём демо-скважинам: колонки, интервалы, траектории и условные обозначения.",
-    points: [
-      "Профили и выбор скважин",
-      "Высотные отметки и интервалы литологии",
-      "Петрографический крап и экспорт SVG / PNG / PDF",
-    ],
-    image: "section-ui.webp",
-    caption: "Реальный интерфейс разреза · ПР-10 / 4 скважины",
-  },
-  {
-    name: "Документация",
-    icon: Layers3,
-    title: "Поинтервальное ведение журналов.",
-    text: "Экран литологического журнала BUR-26-001. Глубинные интервалы, первичная порода и наблюдения сохраняются в связанном контексте скважины.",
-    points: [
-      "Литология · изменения · минерализация",
-      "Прожилки · тектоника · техника · инклинометрия",
-      "Интервалы, описания и проверка границ",
-    ],
-    image: "journal-ui.webp",
-    caption: "Реальный журнал · BUR-26-001",
-  },
-  {
-    name: "Керн и QA/QC",
-    icon: Microscope,
-    title: "Учёт рейсов и контроль качества.",
-    text: "Ведение рядовых и контрольных проб по интервалам бурения. Стандарты CRM, холостые пробы и дубликаты привязаны к скважине.",
-    points: [
-      "Drilling Parameters и геомеханика",
-      "TCR / SCR / RQD и параметры ISRM",
-      "Рядовые пробы, CRM, Blank и дубликаты",
-    ],
-    image: "sampling-ui.webp",
-    caption: "Реальный модуль опробования · BUR-26-001",
-  },
-  {
-    name: "Документы",
-    icon: FileCheck2,
-    title: "Формирование производственных актов.",
-    text: "Генератор формирует акты на основе паспорта скважины, рейсов и замеров. Ниже можно рассмотреть исходные формы A4 и скачать полный PDF, сформированный приложением.",
-    points: [
-      "Акты заложения, замера и закрытия",
-      "Рекультивация и инклинометрия",
-      "6 страниц в демонстрационном PDF-пакете",
-    ],
-    image: "acts-ui.webp",
-    caption: "Реальный генератор актов · BUR-26-001",
-  },
-];
+const tabIcons = [FolderClosed, Map, Layers3, Microscope, FileCheck2];
 
 export function ImageViewer({
   src,
@@ -93,17 +28,18 @@ export function ImageViewer({
   page?: boolean;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
+  const { t } = useI18n();
   return (
     <>
       <button
         type="button"
         className={`actual-image-button ${page ? "actual-page" : ""}`}
         onClick={() => dialog.current?.showModal()}
-        aria-label={`Открыть в полном размере: ${title}`}
+        aria-label={`${t.showcase.openFullAria}: ${title}`}
       >
         <img src={src} alt={alt} loading="lazy" />
         <span className="image-expand">
-          <Maximize2 size={15} /> Рассмотреть
+          <Maximize2 size={15} /> {t.showcase.expandButton}
         </span>
       </button>
       <dialog
@@ -116,12 +52,12 @@ export function ImageViewer({
         <div className="actual-dialog-top">
           <strong>{title}</strong>
           <a href={src} target="_blank" rel="noopener noreferrer">
-            Исходное изображение <ArrowUpRight size={15} />
+            {t.showcase.originalImage} <ArrowUpRight size={15} />
           </a>
           <button
             type="button"
             onClick={() => dialog.current?.close()}
-            aria-label="Закрыть просмотр"
+            aria-label={t.showcase.closeViewerAria}
           >
             <X size={22} />
           </button>
@@ -136,62 +72,68 @@ export function ImageViewer({
 
 export function ProductShowcase() {
   const [active, setActive] = useState(0);
+  const { t } = useI18n();
+  const tabs = t.showcase.tabs;
   const item = tabs[active];
   return (
     <section className="product-section" id="capabilities">
       <div className="wrap">
         <div className="product-heading">
           <div>
-            <span className="eyebrow">Возможности / интерфейс</span>
+            <span className="eyebrow">{t.showcase.eyebrow}</span>
             <h2>
-              Все модули геолога
+              {t.showcase.titleLine1}
               <br />
-              <span>в одном окне.</span>
+              <span>{t.showcase.titleAccent}</span>
             </h2>
           </div>
           <p>
-            Интерфейс основных модулей
+            {t.showcase.subtitleLine1}
             <br />
-            на данных демонстрационного проекта.
+            {t.showcase.subtitleLine2}
           </p>
         </div>
         <div
           className="product-tabs"
           role="tablist"
-          aria-label="Области приложения"
+          aria-label={t.showcase.tablistAria}
         >
-          {tabs.map((t, i) => (
-            <button
-              key={t.name}
-              role="tab"
-              id={`tab-${i}`}
-              aria-selected={active === i}
-              aria-controls={`panel-${i}`}
-              tabIndex={active === i ? 0 : -1}
-              onKeyDown={(e) => {
-                if (
-                  ["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)
-                ) {
-                  e.preventDefault();
-                  const n =
-                    e.key === "Home"
-                      ? 0
-                      : e.key === "End"
-                        ? tabs.length - 1
-                        : (i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) %
-                          tabs.length;
-                  setActive(n);
-                  document.getElementById(`tab-${n}`)?.focus();
-                }
-              }}
-              onClick={() => setActive(i)}
-              className={active === i ? "active" : ""}
-            >
-              <t.icon size={17} />
-              {t.name}
-              <span className="mono">0{i + 1}</span>
-            </button>
-          ))}
+          {tabs.map((tab, i) => {
+            const Icon = tabIcons[i] || FolderClosed;
+            return (
+              <button
+                key={tab.image}
+                role="tab"
+                id={`tab-${i}`}
+                aria-selected={active === i}
+                aria-controls={`panel-${i}`}
+                tabIndex={active === i ? 0 : -1}
+                onKeyDown={(e) => {
+                  if (
+                    ["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)
+                  ) {
+                    e.preventDefault();
+                    const n =
+                      e.key === "Home"
+                        ? 0
+                        : e.key === "End"
+                          ? tabs.length - 1
+                          : (i +
+                              (e.key === "ArrowRight" ? 1 : tabs.length - 1)) %
+                            tabs.length;
+                    setActive(n);
+                    document.getElementById(`tab-${n}`)?.focus();
+                  }
+                }}
+                onClick={() => setActive(i)}
+                className={active === i ? "active" : ""}
+              >
+                <Icon size={17} />
+                {tab.name}
+                <span className="mono">0{i + 1}</span>
+              </button>
+            );
+          })}
         </div>
         <div
           className="product-panel"
@@ -212,14 +154,14 @@ export function ProductShowcase() {
               ))}
             </ul>
             <a className="text-link" href="#real-results">
-              Посмотреть готовые результаты <ArrowUpRight size={16} />
+              {t.showcase.viewResultsLink} <ArrowUpRight size={16} />
             </a>
           </div>
           <div className="product-visual">
             <div className="actual-screen">
               <div className="actual-screen-bar">
-                <span className="mono">GEOCORE.VISTA / РЕАЛЬНЫЙ ИНТЕРФЕЙС</span>
-                <span className="actual-demo">ДЕМО-ДАННЫЕ</span>
+                <span className="mono">{t.showcase.screenBar}</span>
+                <span className="actual-demo">{t.showcase.demoBadge}</span>
               </div>
               <ImageViewer
                 key={item.image}
@@ -246,107 +188,44 @@ export function ProductShowcase() {
           ) : null,
         )}
         <div className="product-caption">
-          <span className="mono">
-            НАСТОЯЩИЕ ИНСТРУМЕНТЫ / ДЕМОНСТРАЦИОННЫЕ ДАННЫЕ
-          </span>
-          <p>
-            Снято в локальной сборке приложения. Встроенный демо-проект, без
-            раскрытия пользовательских данных.
-          </p>
+          <span className="mono">{t.showcase.captionMono}</span>
+          <p>{t.showcase.captionText}</p>
         </div>
       </div>
     </section>
   );
 }
 
-const results = [
-  {
-    name: "Геологический разрез",
-    file: "section-export.webp",
-    title: "Разрез, который строит приложение.",
-    text: "Профиль ПР-10: четыре скважины с глубинами 350–550 м. Реальные литологические интервалы и петрографический крап из встроенного демо, шкала высот и легенда исходного экспорта.",
-    download: "geocore-section.svg",
-    format: "Скачать разрез SVG",
-    detail:
-      "Исходный экспорт renderer приложения · 4 скважины / 11 обозначений",
-    page: false,
-  },
-  {
-    name: "Заложение",
-    file: "act-spudding.webp",
-    title: "Акт о заложении скважины.",
-    text: "Полная форма A4: комиссия, координаты устья, параметры и назначение скважины, требования к выходу керна и строки подписей. Страница извлечена из PDF, сформированного приложением.",
-    download: "geocore-demo-acts.pdf",
-    format: "Скачать пакет актов PDF",
-    detail: "BUR-26-001 · страница 1 / 6 · оригинальный PDF",
-    page: true,
-  },
-  {
-    name: "Контрольный замер",
-    file: "act-depth-check.webp",
-    title: "Акт контрольного замера глубины.",
-    text: "Сопоставление глубины по буровому журналу и контрольному замеру, фиксация расхождения и фактически принятой глубины. Та же форма, которую пользователь получает при экспорте.",
-    download: "geocore-demo-acts.pdf",
-    format: "Скачать пакет актов PDF",
-    detail: "BUR-26-001 · страница 2 / 6 · оригинальный PDF",
-    page: true,
-  },
-  {
-    name: "Закрытие",
-    file: "act-closure.webp",
-    title: "Закрытие и консервация.",
-    text: "Производственные сведения, фактическое положение и глубина, выход керна, конструкция скважины и мероприятия при закрытии. Акт занимает две страницы исходного пакета.",
-    download: "geocore-demo-acts.pdf",
-    format: "Скачать пакет актов PDF",
-    detail: "BUR-26-001 · страницы 3–4 / 6 · показана первая страница",
-    page: true,
-  },
-  {
-    name: "Рекультивация",
-    file: "act-reclamation.webp",
-    title: "Акт рекультивации площадки.",
-    text: "Полная форма по восстановлению буровой площадки: участок, состав комиссии, площадь и состояние выполненных работ.",
-    download: "geocore-demo-acts.pdf",
-    format: "Скачать пакет актов PDF",
-    detail: "BUR-26-001 · страница 5 / 6 · оригинальный PDF",
-    page: true,
-  },
-  {
-    name: "Инклинометрия",
-    file: "act-inclinometry.webp",
-    title: "Замеры искривления скважины.",
-    text: "Таблица глубин, углов наклона и азимутов, сведения о приборе и исполнителе. Результат готов к просмотру и печати в формате A4.",
-    download: "geocore-demo-acts.pdf",
-    format: "Скачать пакет актов PDF",
-    detail: "BUR-26-001 · страница 6 / 6 · оригинальный PDF",
-    page: true,
-  },
-];
 export function RealResults() {
   const [selected, setSelected] = useState(0);
+  const { t } = useI18n();
+  const results = t.realResults.items;
   const result = results[selected];
   return (
     <section id="real-results" className="real-results wrap">
       <div className="real-results-heading">
         <div>
-          <span className="eyebrow">Примеры выгрузки</span>
+          <span className="eyebrow">{t.realResults.eyebrow}</span>
           <h2>
-            Готовые разрезы
+            {t.realResults.titleLine1}
             <br />
-            и бланки актов.
+            {t.realResults.titleLine2}
           </h2>
         </div>
         <p>
-          Исходные файлы из генератора приложения.
+          {t.realResults.subtitleLine1}
           <br />
-          Доступны для просмотра и скачивания.
+          {t.realResults.subtitleLine2}
         </p>
       </div>
-      <div className="result-selectors" aria-label="Выбор результата">
+      <div
+        className="result-selectors"
+        aria-label={t.realResults.selectorAria}
+      >
         {results.map((r, i) => (
           <button
             type="button"
-            key={r.name}
+            key={r.file}
             className={i === selected ? "selected" : ""}
             aria-pressed={i === selected}
             onClick={() => setSelected(i)}
@@ -361,8 +240,8 @@ export function RealResults() {
         <div className="result-description">
           <span className="mono result-label">
             {result.page
-              ? "ПРОИЗВОДСТВЕННЫЙ АКТ / A4"
-              : "ГЕОЛОГИЧЕСКИЙ РАЗРЕЗ / SVG"}
+              ? t.realResults.labelAct
+              : t.realResults.labelSection}
           </span>
           <h3>{result.title}</h3>
           <p>{result.text}</p>
@@ -377,10 +256,7 @@ export function RealResults() {
           <span className="result-provenance">{result.detail}</span>
           <div className="result-privacy">
             <ShieldCheck size={15} />
-            <span>
-              Публичный встроенный демо-проект. Производственные данные клиентов
-              не используются.
-            </span>
+            <span>{t.realResults.privacyNote}</span>
           </div>
         </div>
         <div className="result-preview">

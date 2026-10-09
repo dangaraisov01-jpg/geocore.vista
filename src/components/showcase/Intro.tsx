@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ArrowDown, ArrowUpRight, Menu, X, MoveUpRight } from "lucide-react";
+import { LANG_LABELS, useI18n } from "../../i18n";
 
 export const CONTACT_PHONE = "+77064101339";
 export const CONTACT_WHATSAPP_URL = "https://wa.me/message/J3WXITDCLBDZF1";
@@ -19,40 +20,56 @@ export function Brand({ light = false }: { light?: boolean }) {
 }
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { lang, setLang, t } = useI18n();
   return (
     <header className="header">
       <div className="header-inner">
-        <a href="#" aria-label="Geocore.vista — начало страницы">
+        <a href="#" aria-label={t.header.homeAria}>
           <Brand />
         </a>
         <nav
           className={open ? "nav nav-open" : "nav"}
-          aria-label="Основная навигация"
+          aria-label={t.header.navAria}
         >
-          {[
-            ["Возможности", "#capabilities"],
-            ["Результат", "#output"],
-            ["Для команды", "#team"],
-            ["Вопросы", "#faq"],
-          ].map(([name, href]) => (
+          {t.header.nav.map(([name, href]) => (
             <a key={href} href={href} onClick={() => setOpen(false)}>
               {name}
             </a>
           ))}
         </nav>
-        <div className="header-cta">
-          <a
-            href={CONTACT_WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+        <div className="header-actions">
+          <div className="header-cta">
+            <a
+              href={CONTACT_WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {CONTACT_PHONE}
+            </a>
+            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+          </div>
+          <div
+            className="lang-switcher"
+            role="group"
+            aria-label={t.header.langAria}
           >
-            {CONTACT_PHONE}
-          </a>
-          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+            {LANG_LABELS.map((item) => (
+              <button
+                key={item.code}
+                type="button"
+                className={lang === item.code ? "active" : ""}
+                aria-pressed={lang === item.code}
+                title={item.name}
+                onClick={() => setLang(item.code)}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
         </div>
         <button
           className="menu-toggle"
-          aria-label={open ? "Закрыть меню" : "Открыть меню"}
+          aria-label={open ? t.header.menuClose : t.header.menuOpen}
           aria-expanded={open}
           onClick={() => setOpen(!open)}
         >
@@ -63,27 +80,25 @@ export function Header() {
   );
 }
 export function Hero() {
+  const { t } = useI18n();
   return (
     <section className="hero">
       <div className="wrap hero-grid">
         <div className="hero-copy">
           <div className="eyebrow">
-            <span className="status-dot" /> Рабочая среда геолога
+            <span className="status-dot" /> {t.hero.eyebrow}
           </div>
           <h1>
-            От устья
+            {t.hero.titleLine1}
             <br />
-            до готового
+            {t.hero.titleLine2}
             <br />
-            <span>акта.</span>
+            <span>{t.hero.titleAccent}</span>
           </h1>
-          <p className="hero-description">
-            Проекты, геологическая документация и контроль данных — в одной
-            системе. На участке, в офисе и между командами.
-          </p>
+          <p className="hero-description">{t.hero.description}</p>
           <div className="hero-actions">
             <a className="button button-copper" href="#capabilities">
-              Посмотреть возможности <ArrowDown size={18} />
+              {t.hero.cta} <ArrowDown size={18} />
             </a>
             <div className="hero-contacts">
               <a
@@ -102,16 +117,16 @@ export function Hero() {
           <div className="hero-bottom">
             <span className="mono">FIELD → DATA → INSIGHT</span>
             <span>
-              Создано вокруг
+              {t.hero.bottomSubLine1}
               <br />
-              реальной работы геолога
+              {t.hero.bottomSubLine2}
             </span>
           </div>
         </div>
         <div className="hero-art">
           <img
             src="/images/core-hero-real.jpg"
-            alt="Образцы бурового керна с кварцевыми прожилками и зонами окисления"
+            alt={t.hero.coreAlt}
             fetchPriority="high"
             width="1200"
             height="896"
@@ -135,50 +150,41 @@ export function Hero() {
               <i />
               <i />
             </div>
-            <span className="mono">КЕРН — НАЧАЛО ИСТОРИИ ДАННЫХ</span>
+            <span className="mono">{t.hero.coreRule}</span>
           </div>
           <div className="floating-note">
             <MoveUpRight size={20} />
             <span>
-              Каждый интервал.
+              {t.hero.floatingLine1}
               <br />
-              <strong>В общем контексте.</strong>
+              <strong>{t.hero.floatingStrong}</strong>
             </span>
           </div>
         </div>
       </div>
       <div className="hero-strip wrap">
-        <span>ГЕОЛОГИЧЕСКАЯ ДОКУМЕНТАЦИЯ</span>
-        <span>GIS И РАЗРЕЗЫ</span>
-        <span>КЕРН И QA/QC</span>
-        <span>АКТЫ И ЭКСПОРТ</span>
+        {t.hero.strip.map((label) => (
+          <span key={label}>{label}</span>
+        ))}
       </div>
     </section>
   );
 }
 export function Workflow() {
-  const steps = [
-    ["01", "Организуйте", "Проект, участки, паспорта скважин."],
-    ["02", "Документируйте", "Рейсы, интервалы и наблюдения."],
-    ["03", "Проверьте", "Связность данных и контрольные пробы."],
-    ["04", "Передайте", "Таблицы, акты и доступ команде."],
-  ];
+  const { t } = useI18n();
   return (
     <section className="workflow wrap" aria-labelledby="workflow-heading">
       <div className="section-intro">
-        <span className="eyebrow">Рабочий процесс</span>
+        <span className="eyebrow">{t.workflow.eyebrow}</span>
         <h2 id="workflow-heading">
-          Одна скважина.
+          {t.workflow.titleLine1}
           <br />
-          Весь рабочий цикл.
+          {t.workflow.titleLine2}
         </h2>
-        <p>
-          Единая цепочка данных: от полевого описания керна до сводных
-          ведомостей и производственных актов.
-        </p>
+        <p>{t.workflow.description}</p>
       </div>
       <div className="workflow-steps">
-        {steps.map(([n, title, text]) => (
+        {t.workflow.steps.map(([n, title, text]) => (
           <div className="workflow-step" key={n}>
             <span className="mono step-number">{n}</span>
             <h3>{title}</h3>

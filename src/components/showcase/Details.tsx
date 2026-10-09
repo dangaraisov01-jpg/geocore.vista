@@ -8,7 +8,6 @@ import {
   FileText,
   FolderInput,
   Check,
-  Layers3,
 } from "lucide-react";
 import {
   CONTACT_EMAIL,
@@ -16,34 +15,8 @@ import {
   CONTACT_WHATSAPP_URL,
   Brand,
 } from "./Intro";
+import { useI18n } from "../../i18n";
 
-const capabilities = [
-  [
-    "01",
-    "Геологические журналы",
-    "Литология, изменения, минерализация, прожилки, тектоника, техника и инклинометрия — с общей привязкой к глубине.",
-  ],
-  [
-    "02",
-    "Геомеханика и бурение",
-    "Рейсы, диаметр керна, TCR / SCR / RQD, прочность по ISRM, выветрелость и состояние керна.",
-  ],
-  [
-    "03",
-    "Опробование и QA/QC",
-    "Интервалы и номера проб, стандарты CRM, холостые пробы, полевые и лабораторные дубликаты.",
-  ],
-  [
-    "04",
-    "Карта и геологический разрез",
-    "Координаты устьев, профили, траектории скважин и сопоставление литологических интервалов.",
-  ],
-  [
-    "05",
-    "Документация и контроль",
-    "Акты по скважине, лабораторные формы, проверка интервалов, сводки и видимые статусы синхронизации.",
-  ],
-];
 const softwareLogos = [
   { name: "Micromine", src: "/logos/micromine-icon.jpg" },
   { name: "Leapfrog Geo", src: "/logos/seequent-icon.svg" },
@@ -56,24 +29,25 @@ const softwareLogos = [
 ];
 
 export function Output() {
+  const { t } = useI18n();
   return (
     <>
       <section className="coverage wrap" aria-labelledby="coverage-title">
         <div className="coverage-intro">
-          <span className="eyebrow">Модули системы</span>
+          <span className="eyebrow">{t.coverage.eyebrow}</span>
           <h2 id="coverage-title">
-            Полный контур
+            {t.coverage.titleLine1}
             <br />
-            полевых работ.
+            {t.coverage.titleLine2}
           </h2>
           <p>
-            Специализированные журналы и таблицы
+            {t.coverage.subtitleLine1}
             <br />
-            с общей привязкой к скважине и глубине.
+            {t.coverage.subtitleLine2}
           </p>
         </div>
         <div className="coverage-list">
-          {capabilities.map(([n, title, text]) => (
+          {t.coverage.capabilities.map(([n, title, text]) => (
             <article key={n}>
               <span className="mono">{n}</span>
               <div>
@@ -88,24 +62,18 @@ export function Output() {
       <section className="output-section" id="output">
         <div className="wrap output-grid">
           <div className="output-copy">
-            <span className="eyebrow">Экспорт и отчётность</span>
+            <span className="eyebrow">{t.output.eyebrow}</span>
             <h2>
-              Выгрузка в отчёты
+              {t.output.titleLine1}
               <br />
-              и профильное ПО.
+              {t.output.titleLine2}
             </h2>
-            <p>
-              Соберите данные один раз. Подготовьте их для отчётности,
-              лаборатории и дальнейшей интерпретации.
-            </p>
+            <p>{t.output.description}</p>
             <div className="output-input">
               <FolderInput size={20} />
               <div>
-                <b>Импорт таблиц и полевых записей</b>
-                <p>
-                  Таблицы и шаблоны для переноса исходных записей. Текстовый
-                  импорт с проверкой границ и интервалов.
-                </p>
+                <b>{t.output.inputTitle}</b>
+                <p>{t.output.inputText}</p>
               </div>
             </div>
           </div>
@@ -115,12 +83,9 @@ export function Output() {
                 <FileText />
               </span>
               <div>
-                <span className="tiny-label">01 / ДОКУМЕНТАЦИЯ</span>
-                <h3>Акты и рабочие формы</h3>
-                <p>
-                  Заложение, контрольный замер, закрытие, рекультивация и
-                  инклинометрия. Документы отбора и передачи проб.
-                </p>
+                <span className="tiny-label">{t.output.deliv1Label}</span>
+                <h3>{t.output.deliv1Title}</h3>
+                <p>{t.output.deliv1Text}</p>
               </div>
               <ArrowUpRight size={19} aria-hidden="true" />
             </article>
@@ -129,19 +94,19 @@ export function Output() {
                 <FileSpreadsheet />
               </span>
               <div>
-                <span className="tiny-label">02 / ДАННЫЕ</span>
-                <h3>Таблицы для профильного ПО</h3>
-                <p>
-                  Паспорта скважин, интервальные данные и опробование в CSV /
-                  Excel. Структура для дальнейшей обработки и моделирования.
-                </p>
+                <span className="tiny-label">{t.output.deliv2Label}</span>
+                <h3>{t.output.deliv2Title}</h3>
+                <p>{t.output.deliv2Text}</p>
                 <div className="format-tags">
                   <span>COLLAR</span>
                   <span>SURVEY</span>
                   <span>LITHOLOGY</span>
                   <span>ASSAY</span>
                 </div>
-                <div className="software-logos" aria-label="Профильное ПО">
+                <div
+                  className="software-logos"
+                  aria-label={t.output.softwareAria}
+                >
                   {softwareLogos.map((sw) => (
                     <span className="software-chip" key={sw.name}>
                       <img src={sw.src} alt={sw.name} loading="lazy" />
@@ -159,88 +124,72 @@ export function Output() {
   );
 }
 export function FieldAndTeam() {
+  const { t } = useI18n();
   return (
     <section className="team-section wrap" id="team">
       <div className="team-heading">
-        <span className="eyebrow">Участок ↔ офис</span>
+        <span className="eyebrow">{t.team.eyebrow}</span>
         <h2>
-          Автономная работа
+          {t.team.titleLine1}
           <br />
-          <span>и синхронизация.</span>
+          <span>{t.team.titleAccent}</span>
         </h2>
       </div>
       <div className="team-layout">
         <div className="field-panel">
           <div className="field-panel-top">
-            <span className="mono">ПОЛЕВОЙ РЕЖИМ</span>
+            <span className="mono">{t.team.fieldBadge}</span>
             <WifiOff size={20} />
           </div>
           <div className="field-large">
-            Локальное сохранение
+            {t.team.fieldTitleLine1}
             <br />
-            и очередь отправки.
+            {t.team.fieldTitleLine2}
           </div>
           <div className="sync-timeline">
             <div>
               <span className="sync-circle">
                 <Check size={13} />
               </span>
-              <span>Изменения сохранены на устройстве</span>
+              <span>{t.team.sync1}</span>
               <b className="mono">LOCAL</b>
             </div>
             <div>
               <span className="sync-circle waiting">
                 <ArrowRight size={13} />
               </span>
-              <span>Очередь ждёт подключения</span>
+              <span>{t.team.sync2}</span>
               <b className="mono">PENDING</b>
             </div>
             <div>
               <span className="sync-circle outline">
                 <Check size={13} />
               </span>
-              <span>Отправка и подтверждение сервера</span>
+              <span>{t.team.sync3}</span>
               <b className="mono">SYNC</b>
             </div>
           </div>
-          <p>
-            Неотправленные изменения и конфликты видны в центре синхронизации.
-            Первичный вход и восстановление ключей требуют интернета.
-          </p>
+          <p>{t.team.fieldFoot}</p>
         </div>
         <div className="team-notes">
           <article>
             <UsersRound size={24} />
             <div>
-              <h3>Роли, компании и ответственность</h3>
-              <p>
-                ADMIN управляет доступом, GEOLOGIST работает с данными своей
-                компании, VIEWER просматривает разрешённые проекты. Запросы
-                удаления и восстановления проходят согласование.
-              </p>
+              <h3>{t.team.note1Title}</h3>
+              <p>{t.team.note1Text}</p>
             </div>
           </article>
           <article>
             <KeyRound size={24} />
             <div>
-              <h3>Ваши данные — под защитой</h3>
-              <p>
-                Содержимое проектов и скважин защищено клиентским шифрованием
-                AES-GCM перед отправкой на сервер. Доступ к ключу компании
-                выдаётся после сверки отпечатка (fingerprint) ключа сотрудника
-                администратором. На другом браузере ключ аккаунта
-                восстанавливается по мастер-паролю.
-              </p>
+              <h3>{t.team.note2Title}</h3>
+              <p>{t.team.note2Text}</p>
               <div className="security-highlights">
-                <span>AES-GCM</span>
-                <span>Роли и компании</span>
-                <span>Подтверждённые ключи</span>
+                {t.team.highlights.map((h) => (
+                  <span key={h}>{h}</span>
+                ))}
               </div>
-              <span className="security-note">
-                Клиентское шифрование не заменяет защиту устройства. Аудит и
-                тексты запросов удаления / восстановления пока не зашифрованы
-                этим контуром.
-              </span>
+              <span className="security-note">{t.team.securityNote}</span>
             </div>
           </article>
         </div>
@@ -248,43 +197,22 @@ export function FieldAndTeam() {
     </section>
   );
 }
-const questions = [
-  [
-    "Это рабочее приложение или только презентация?",
-    "Этот сайт — обзор возможностей Geocore.vista. Здесь показаны настоящие экраны приложения, разрез и A4 акты, сформированные его инструментами на встроенном демо-проекте. Для подключения и получения доступа к рабочей системе свяжитесь с нами в WhatsApp по номеру +77064101339 или по почте geocorevista@gmail.com.",
-  ],
-  [
-    "Можно ли работать на участке без интернета?",
-    "После первоначальной настройки приложение сохраняет изменения на устройстве и ведёт очередь отправки. При восстановлении связи можно синхронизировать данные и проверить результат. Первый онлайн-вход, выдача доступа и восстановление ключей на новом браузере требуют подключения.",
-  ],
-  [
-    "С чего начинается работа геолога?",
-    "С проекта и паспорта скважины: координаты, параметры бурения и идентификатор. Затем добавляются рейсы, геологические интервалы, опробование и контрольные записи. Карта, разрезы и документы используют этот общий контекст.",
-  ],
-  [
-    "Как перенести данные в другое геологическое ПО?",
-    "Через выгрузку структурированных таблиц и настройку соответствующего шаблона импорта в принимающей программе. Паспорта, инклинометрия, литология и опробование передаются отдельными связанными наборами.",
-  ],
-  [
-    "Что происходит при смене компьютера или браузера?",
-    "Войдите в свой аккаунт и восстановите его ключ из облачной зашифрованной копии по личному мастер-паролю. ADMIN сверяет fingerprint ключа сотрудника и выдаёт доступ компании. Восстановление ключа не переносит неотправленные локальные черновики с другого устройства.",
-  ],
-];
 export function FAQ() {
+  const { t } = useI18n();
   return (
     <section className="faq-section wrap" id="faq">
       <div>
-        <span className="eyebrow">Частые вопросы</span>
-        <h2>Вопросы и ответы</h2>
+        <span className="eyebrow">{t.faq.eyebrow}</span>
+        <h2>{t.faq.title}</h2>
         <p>
-          Короткие ответы
+          {t.faq.subtitleLine1}
           <br />
-          на практические вопросы.
+          {t.faq.subtitleLine2}
         </p>
       </div>
       <div className="faq-list">
-        {questions.map(([q, a], i) => (
-          <details key={q}>
+        {t.faq.questions.map(([q, a], i) => (
+          <details key={i}>
             <summary>
               <span className="mono">0{i + 1}</span>
               <h3>{q}</h3>
@@ -300,16 +228,17 @@ export function FAQ() {
   );
 }
 export function Footer() {
+  const { t } = useI18n();
   return (
     <>
       <section className="closing">
         <div className="wrap closing-inner">
           <div>
-            <span className="eyebrow">Свяжитесь с нами</span>
+            <span className="eyebrow">{t.footer.closingEyebrow}</span>
             <h2>
-              Связаться с командой
+              {t.footer.closingTitleLine1}
               <br />
-              Geocore.vista
+              {t.footer.closingTitleLine2}
             </h2>
           </div>
           <div className="closing-contacts">
@@ -329,15 +258,15 @@ export function Footer() {
                 {CONTACT_EMAIL} <ArrowUpRight size={18} />
               </a>
             </div>
-            <p>WhatsApp и почта для связи и подключения</p>
+            <p>{t.footer.closingCaption}</p>
           </div>
         </div>
       </section>
       <footer className="footer wrap">
-        <a href="#" aria-label="Начало страницы">
+        <a href="#" aria-label={t.footer.topAria}>
           <Brand />
         </a>
-        <span>Рабочая среда геологической документации</span>
+        <span>{t.footer.tagline}</span>
         <div className="footer-contacts">
           <a
             href={CONTACT_WHATSAPP_URL}
@@ -349,11 +278,11 @@ export function Footer() {
           <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
         </div>
         <a href="#capabilities">
-          К обзору <ArrowUpRight size={14} />
+          {t.footer.toOverview} <ArrowUpRight size={14} />
         </a>
         <div className="footer-bottom">
           <span>© {2026} Geocore.vista</span>
-          <span>Все данные на этом сайте — демонстрационные.</span>
+          <span>{t.footer.disclaimer}</span>
           <span className="mono">FIELD / OFFICE / ONE WORKFLOW</span>
         </div>
       </footer>

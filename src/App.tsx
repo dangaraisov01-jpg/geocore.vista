@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import { Header, Hero, Workflow } from "./components/showcase/Intro";
 import {
   ProductShowcase,
@@ -9,12 +10,14 @@ import {
   FAQ,
   Footer,
 } from "./components/showcase/Details";
+import { I18nProvider, useI18n } from "./i18n";
 
-export default function App() {
+function PageContent() {
+  const { t } = useI18n();
   return (
     <>
       <a className="skip-link" href="#main">
-        Перейти к содержимому
+        {t.skipLink}
       </a>
       <Header />
       <main id="main">
@@ -28,5 +31,14 @@ export default function App() {
         <Footer />
       </main>
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <I18nProvider>
+      <PageContent />
+      <Analytics />
+    </I18nProvider>
   );
 }
