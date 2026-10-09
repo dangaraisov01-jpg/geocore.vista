@@ -10,7 +10,7 @@ import {
   Check,
   Layers3,
 } from "lucide-react";
-import { APP_URL, Brand } from "./Intro";
+import { CONTACT_EMAIL, CONTACT_PHONE, Brand } from "./Intro";
 
 const capabilities = [
   [
@@ -39,21 +39,32 @@ const capabilities = [
     "Акты по скважине, лабораторные формы, проверка интервалов, сводки и видимые статусы синхронизации.",
   ],
 ];
+const softwareLogos = [
+  { name: "Micromine", src: "/logos/micromine-icon.jpg" },
+  { name: "Leapfrog Geo", src: "/logos/seequent-icon.svg" },
+  { name: "Datamine", src: "/logos/datamine-icon.png" },
+  { name: "Surpac", src: "/logos/3ds-logo.svg" },
+  { name: "QGIS", src: "/logos/qgis.svg" },
+  { name: "ArcGIS Pro", src: "/logos/arcgis-pro.png" },
+  { name: "AutoCAD", src: "/logos/autocad-icon.svg" },
+  { name: "Excel", src: "/logos/excel2.svg" },
+];
+
 export function Output() {
   return (
     <>
       <section className="coverage wrap" aria-labelledby="coverage-title">
         <div className="coverage-intro">
-          <span className="eyebrow">Не упустить главное</span>
+          <span className="eyebrow">Модули системы</span>
           <h2 id="coverage-title">
-            Всё, что остаётся
+            Полный контур
             <br />
-            после полевого дня.
+            полевых работ.
           </h2>
           <p>
-            В каждой области — свой инструмент.
+            Специализированные журналы и таблицы
             <br />
-            Между областями — связь данных.
+            с общей привязкой к скважине и глубине.
           </p>
         </div>
         <div className="coverage-list">
@@ -72,10 +83,11 @@ export function Output() {
       <section className="output-section" id="output">
         <div className="wrap output-grid">
           <div className="output-copy">
-            <span className="eyebrow">Результат, а не ещё один файл</span>
+            <span className="eyebrow">Экспорт и отчётность</span>
             <h2>
-              Из наблюдений —<br />в документы
-              <br />и модели.
+              Выгрузка в отчёты
+              <br />
+              и профильное ПО.
             </h2>
             <p>
               Соберите данные один раз. Подготовьте их для отчётности,
@@ -84,11 +96,10 @@ export function Output() {
             <div className="output-input">
               <FolderInput size={20} />
               <div>
-                <b>Импорт без смены привычного процесса</b>
+                <b>Импорт таблиц и полевых записей</b>
                 <p>
                   Таблицы и шаблоны для переноса исходных записей. Текстовый
-                  импорт — как вспомогательный инструмент, с проверкой
-                  результата.
+                  импорт с проверкой границ и интервалов.
                 </p>
               </div>
             </div>
@@ -125,14 +136,17 @@ export function Output() {
                   <span>LITHOLOGY</span>
                   <span>ASSAY</span>
                 </div>
+                <div className="software-logos" aria-label="Профильное ПО">
+                  {softwareLogos.map((sw) => (
+                    <span className="software-chip" key={sw.name}>
+                      <img src={sw.src} alt={sw.name} loading="lazy" />
+                      <span>{sw.name}</span>
+                    </span>
+                  ))}
+                </div>
               </div>
               <ArrowUpRight size={19} aria-hidden="true" />
             </article>
-            <p className="integration-note">
-              Выгрузка таблиц для Micromine, Leapfrog, Datamine и GIS-сред.
-              Совместимость зависит от шаблона импорта выбранной программы; это
-              не прямые интеграции и не партнёрства.
-            </p>
           </div>
         </div>
       </section>
@@ -145,14 +159,10 @@ export function FieldAndTeam() {
       <div className="team-heading">
         <span className="eyebrow">Участок ↔ офис</span>
         <h2>
-          Работа продолжается.
+          Автономная работа
           <br />
-          <span>Даже вне сети.</span>
+          <span>и синхронизация.</span>
         </h2>
-        <p>
-          Полевые условия не должны диктовать структуру данных. А командная
-          работа — лишать их контроля.
-        </p>
       </div>
       <div className="team-layout">
         <div className="field-panel">
@@ -161,9 +171,9 @@ export function FieldAndTeam() {
             <WifiOff size={20} />
           </div>
           <div className="field-large">
-            Сначала сохранение.
+            Локальное сохранение
             <br />
-            Затем синхронизация.
+            и очередь отправки.
           </div>
           <div className="sync-timeline">
             <div>
@@ -211,11 +221,10 @@ export function FieldAndTeam() {
               <h3>Ваши данные — под защитой</h3>
               <p>
                 Содержимое проектов и скважин защищено клиентским шифрованием
-                AES-GCM: на сервер отправляется шифротекст, а не открытые
-                геологические данные. Доступ к ключу компании выдаётся после
-                сверки отпечатка (fingerprint) ключа сотрудника администратором.
-                На другом браузере ключ аккаунта восстанавливается по
-                мастер-паролю.
+                AES-GCM перед отправкой на сервер. Доступ к ключу компании
+                выдаётся после сверки отпечатка (fingerprint) ключа сотрудника
+                администратором. На другом браузере ключ аккаунта
+                восстанавливается по мастер-паролю.
               </p>
               <div className="security-highlights">
                 <span>AES-GCM</span>
@@ -237,7 +246,7 @@ export function FieldAndTeam() {
 const questions = [
   [
     "Это рабочее приложение или только презентация?",
-    "Этот сайт — обзор возможностей Geocore.vista. Здесь показаны настоящие экраны приложения, разрез и A4 акты, сформированные его инструментами на встроенном демо-проекте. Кнопка «В приложение» ведёт в отдельную рабочую систему. Для работы с данными нужен аккаунт, созданный администратором.",
+    "Этот сайт — обзор возможностей Geocore.vista. Здесь показаны настоящие экраны приложения, разрез и A4 акты, сформированные его инструментами на встроенном демо-проекте. Для подключения и получения доступа к рабочей системе свяжитесь с нами по телефону +77760721339 или почте geocorevista@gmail.com.",
   ],
   [
     "Можно ли работать на участке без интернета?",
@@ -249,7 +258,7 @@ const questions = [
   ],
   [
     "Как перенести данные в другое геологическое ПО?",
-    "Через выгрузку структурированных таблиц и настройку соответствующего шаблона импорта в принимающей программе. Паспорта, инклинометрия, литология и опробование передаются отдельными связанными наборами. На сайте не заявляются автоматические API-интеграции с внешними продуктами.",
+    "Через выгрузку структурированных таблиц и настройку соответствующего шаблона импорта в принимающей программе. Паспорта, инклинометрия, литология и опробование передаются отдельными связанными наборами.",
   ],
   [
     "Что происходит при смене компьютера или браузера?",
@@ -260,8 +269,8 @@ export function FAQ() {
   return (
     <section className="faq-section wrap" id="faq">
       <div>
-        <span className="eyebrow">Перед началом работы</span>
-        <h2>По существу.</h2>
+        <span className="eyebrow">Частые вопросы</span>
+        <h2>Вопросы и ответы</h2>
         <p>
           Короткие ответы
           <br />
@@ -291,23 +300,29 @@ export function Footer() {
       <section className="closing">
         <div className="wrap closing-inner">
           <div>
-            <span className="eyebrow">Посмотрите рабочую среду</span>
+            <span className="eyebrow">Свяжитесь с нами</span>
             <h2>
-              Геология сложная.
+              Связаться с командой
               <br />
-              Рабочий процесс — нет.
+              Geocore.vista
             </h2>
           </div>
-          <div>
-            <a
-              className="button button-copper"
-              href={APP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Открыть Geocore.vista <ArrowUpRight size={19} />
-            </a>
-            <p>Рабочая система · вход по аккаунту</p>
+          <div className="closing-contacts">
+            <div className="closing-links">
+              <a
+                className="button button-copper"
+                href={`tel:${CONTACT_PHONE}`}
+              >
+                {CONTACT_PHONE} <ArrowUpRight size={18} />
+              </a>
+              <a
+                className="button button-outline-light"
+                href={`mailto:${CONTACT_EMAIL}`}
+              >
+                {CONTACT_EMAIL} <ArrowUpRight size={18} />
+              </a>
+            </div>
+            <p>Почта и телефон для связи и подключения</p>
           </div>
         </div>
       </section>
@@ -316,6 +331,10 @@ export function Footer() {
           <Brand />
         </a>
         <span>Рабочая среда геологической документации</span>
+        <div className="footer-contacts">
+          <a href={`tel:${CONTACT_PHONE}`}>{CONTACT_PHONE}</a>
+          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+        </div>
         <a href="#capabilities">
           К обзору <ArrowUpRight size={14} />
         </a>

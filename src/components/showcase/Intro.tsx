@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { ArrowDown, ArrowUpRight, Menu, X, MoveUpRight } from "lucide-react";
+import realCoreHeroUrl from "../../assets/images/real_field_core_staggered_ends_1791560367428.jpg";
 
-export const APP_URL = "https://geolog-studio-steel.vercel.app/";
+export const CONTACT_PHONE = "+77760721339";
+export const CONTACT_EMAIL = "geocorevista@gmail.com";
 export function Brand({ light = false }: { light?: boolean }) {
   return (
     <span className={`brand ${light ? "brand-light" : ""}`}>
       <span className="brand-mark" aria-hidden="true">
-        <i />
-        <i />
-        <i />
+        <img src="/logos/geocore-logo.svg" alt="" width="38" height="38" />
       </span>
       <span>
         geocore<span className="brand-dot">.</span>
@@ -40,14 +40,10 @@ export function Header() {
             </a>
           ))}
         </nav>
-        <a
-          className="header-cta"
-          href={APP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          В приложение <ArrowUpRight size={16} />
-        </a>
+        <div className="header-cta">
+          <a href={`tel:${CONTACT_PHONE}`}>{CONTACT_PHONE}</a>
+          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+        </div>
         <button
           className="menu-toggle"
           aria-label={open ? "Закрыть меню" : "Открыть меню"}
@@ -83,14 +79,14 @@ export function Hero() {
             <a className="button button-copper" href="#capabilities">
               Посмотреть возможности <ArrowDown size={18} />
             </a>
-            <a
-              className="text-link light"
-              href={APP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Открыть приложение <ArrowUpRight size={17} />
-            </a>
+            <div className="hero-contacts">
+              <a className="text-link light" href={`tel:${CONTACT_PHONE}`}>
+                {CONTACT_PHONE}
+              </a>
+              <a className="text-link light" href={`mailto:${CONTACT_EMAIL}`}>
+                {CONTACT_EMAIL}
+              </a>
+            </div>
           </div>
           <div className="hero-bottom">
             <span className="mono">FIELD → DATA → INSIGHT</span>
@@ -103,9 +99,10 @@ export function Hero() {
         </div>
         <div className="hero-art">
           <img
-            src="/images/core-hero.webp"
-            alt="Образцы бурового керна с кварцевыми прожилками — предметная иллюстрация"
+            src={realCoreHeroUrl}
+            alt="Образцы бурового керна с кварцевыми прожилками и зонами окисления"
             fetchPriority="high"
+            referrerPolicy="no-referrer"
             width="1200"
             height="900"
           />
@@ -159,15 +156,15 @@ export function Workflow() {
   return (
     <section className="workflow wrap" aria-labelledby="workflow-heading">
       <div className="section-intro">
-        <span className="eyebrow">Без разрозненных файлов</span>
+        <span className="eyebrow">Рабочий процесс</span>
         <h2 id="workflow-heading">
           Одна скважина.
           <br />
           Весь рабочий цикл.
         </h2>
         <p>
-          Не просто электронный журнал. Связанные данные от первого наблюдения
-          до итоговой документации.
+          Единая цепочка данных: от полевого описания керна до сводных
+          ведомостей и производственных актов.
         </p>
       </div>
       <div className="workflow-steps">
