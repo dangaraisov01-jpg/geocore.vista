@@ -3,7 +3,7 @@ import {
   FileText,
   X,
   CheckCircle2,
-  Printer,
+  Download,
   Send,
   Building2,
   User,
@@ -22,6 +22,7 @@ import {
   CONTACT_WHATSAPP_URL,
 } from "./Intro";
 import { useI18n, Lang } from "../../i18n";
+import { downloadCommercialProposalPdf } from "../../utils/generateProposalPdf";
 
 interface ProposalLead {
   fullName: string;
@@ -51,6 +52,8 @@ const proposalCopy: Record<
     submitBtn: string;
     submittedBtn: string;
     printBtn: string;
+    downloadingBtn: string;
+    downloadedBtn: string;
     whatsappBtn: string;
     emailBtn: string;
     validationError: string;
@@ -114,7 +117,9 @@ const proposalCopy: Record<
     planBoth: "Рассмотреть оба варианта",
     submitBtn: "Сформировать именное КП",
     submittedBtn: "КП сформировано — отправить в WhatsApp",
-    printBtn: "Печать / Скачать PDF (2 стр.)",
+    printBtn: "Скачать КП в PDF (2 стр.)",
+    downloadingBtn: "Формируем PDF...",
+    downloadedBtn: "PDF скачан (2 стр.) ✓",
     whatsappBtn: "Записаться на 15-мин демо в WhatsApp",
     emailBtn: "Запросить счет и договор на почту",
     validationError:
@@ -272,7 +277,9 @@ const proposalCopy: Record<
     planBoth: "Екі нұсқаны да қарастыру",
     submitBtn: "Атаулы КҰ қалыптастыру",
     submittedBtn: "КҰ дайын — WhatsApp-қа жіберу",
-    printBtn: "Басып шығару / PDF жүктеу (2 бет)",
+    printBtn: "КҰ PDF жүктеу (2 бет)",
+    downloadingBtn: "PDF дайындалуда...",
+    downloadedBtn: "PDF жүктелді (2 бет) ✓",
     whatsappBtn: "WhatsApp-та 15 мин демоға жазылу",
     emailBtn: "Поштаға шот пен шарт сұрату",
     validationError:
@@ -430,7 +437,9 @@ const proposalCopy: Record<
     planBoth: "Evaluate Both Options",
     submitBtn: "Generate Personalized Proposal",
     submittedBtn: "Proposal Ready — Send via WhatsApp",
-    printBtn: "Print / Save PDF (2 pages)",
+    printBtn: "Download Proposal PDF (2 pages)",
+    downloadingBtn: "Generating PDF...",
+    downloadedBtn: "PDF Downloaded (2 pages) ✓",
     whatsappBtn: "Book 15-Min Demo on WhatsApp",
     emailBtn: "Request Quote & Contract via Email",
     validationError:
@@ -596,6 +605,8 @@ export function CommercialProposalModal({
 
   const [error, setError] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [downloading, setDownloading] = useState(false);
+  const [downloaded, setDownloaded] = useState(false);
 
   useEffect(() => {
     if (!open) return;
@@ -657,10 +668,6 @@ export function CommercialProposalModal({
     docEl?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const handlePrint = () => {
-    window.print();
-  };
-
   const todayStr = new Date().toLocaleDateString(
     lang === "en" ? "en-US" : "ru-RU",
     {
@@ -669,6 +676,29 @@ export function CommercialProposalModal({
       year: "numeric",
     },
   );
+
+  const handleDownloadPdf = async () => {
+    if (downloading) return;
+    setDownloading(true);
+    try {
+      await downloadCommercialProposalPdf({
+        lang,
+        fullName: lead.fullName,
+        company: lead.company,
+        phone: lead.phone,
+        plan: lead.plan,
+        planName,
+        todayStr,
+        contactPhone: CONTACT_PHONE,
+        contactEmail: CONTACT_EMAIL,
+        copy: c,
+      });
+      setDownloaded(true);
+      setTimeout(() => setDownloaded(false), 3500);
+    } finally {
+      setDownloading(false);
+    }
+  };
 
   return (
     <div
@@ -693,10 +723,17 @@ export function CommercialProposalModal({
             <button
               type="button"
               className="kp-action-btn kp-action-print"
-              onClick={handlePrint}
+              onClick={handleDownloadPdf}
+              disabled={downloading}
             >
-              <Printer size={15} />
-              <span>{c.printBtn}</span>
+              <Download size={15} />
+              <span>
+                {downloading
+                  ? c.downloadingBtn
+                  : downloaded
+                    ? c.downloadedBtn
+                    : c.printBtn}
+              </span>
             </button>
             <button
               type="button"
@@ -799,11 +836,16 @@ export function CommercialProposalModal({
                 </a>
                 <button
                   type="button"
-                  onClick={handlePrint}
+                  onClick={handleDownloadPdf}
+                  disabled={downloading}
                   className="button kp-print-secondary"
                 >
-                  <Printer size={16} />
-                  {c.printBtn}
+                  <Download size={16} />
+                  {downloading
+                    ? c.downloadingBtn
+                    : downloaded
+                      ? c.downloadedBtn
+                      : c.printBtn}
                 </button>
               </div>
 
@@ -944,15 +986,23 @@ export function CommercialProposalModal({
             <article className="kp-sheet kp-sheet-page2">
               <header className="kp-sheet-header kp-sheet-header-compact">
                 <div className="kp-sheet-brand">
-                  <span className="kp-brand-title">
-                    geocore<span>.</span>
-                    <b>vista</b>
-                  </span>
-                  <small className="mono">
-                    {lead.company.trim()
-                      ? `ДЛЯ: ${lead.company.trim().toUpperCase()}`
-                      : "КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ"}
-                  </small>
+                  <img
+                    src="/logos/geocore-logo.svg"
+                    alt=""
+                    width="32"
+                    height="32"
+                  />
+                  <div>
+                    <span className="kp-brand-title">
+                      geocore<span>.</span>
+                      <b>vista</b>
+                    </span>
+                    <small className="mono">
+                      {lead.company.trim()
+                        ? `ДЛЯ: ${lead.company.trim().toUpperCase()}`
+                        : c.docType}
+                    </small>
+                  </div>
                 </div>
                 <div className="kp-sheet-meta mono">
                   <span>{c.page2Label}</span>
@@ -1052,6 +1102,19 @@ export function CommercialProposalModal({
                       {c.whatsappBtn} ({CONTACT_PHONE}){" "}
                       <ArrowUpRight size={16} />
                     </a>
+                    <button
+                      type="button"
+                      onClick={handleDownloadPdf}
+                      disabled={downloading}
+                      className="button button-outline-light"
+                    >
+                      <Download size={16} />
+                      {downloading
+                        ? c.downloadingBtn
+                        : downloaded
+                          ? c.downloadedBtn
+                          : c.printBtn}
+                    </button>
                     <a
                       href={CONTACT_WHATSAPP_URL}
                       target="_blank"

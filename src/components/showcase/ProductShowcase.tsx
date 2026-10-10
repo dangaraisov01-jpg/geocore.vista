@@ -258,7 +258,26 @@ export function RealResults() {
           <a
             className="button result-download"
             href={`/examples/${result.download}`}
-            download
+            download={result.download}
+            onClick={async (e) => {
+              e.preventDefault();
+              try {
+                const res = await fetch(`/examples/${result.download}`);
+                const blob = await res.blob();
+                const blobUrl = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = blobUrl;
+                link.download = result.download;
+                document.body.appendChild(link);
+                link.click();
+                setTimeout(() => {
+                  document.body.removeChild(link);
+                  URL.revokeObjectURL(blobUrl);
+                }, 1000);
+              } catch {
+                window.location.href = `/examples/${result.download}`;
+              }
+            }}
           >
             <Download size={17} />
             {result.format}
