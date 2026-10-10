@@ -80,11 +80,15 @@ const proposalCopy: Record<
     sec3Metrics: { value: string; label: string; desc: string }[];
     sec4Title: string;
     tariff1Badge: string;
+    tariff1Price: string;
+    tariff1PriceNote: string;
     tariff1Title: string;
     tariff1Target: string;
     tariff1Points: { bold: string; text: string }[];
     tariff1Result: string;
     tariff2Badge: string;
+    tariff2Price: string;
+    tariff2PriceNote: string;
     tariff2Title: string;
     tariff2Target: string;
     tariff2Points: { bold: string; text: string }[];
@@ -112,9 +116,9 @@ const proposalCopy: Record<
     phoneLabel: "Номер телефона (WhatsApp) *",
     phonePlaceholder: "+7 (700) 000-00-00",
     planLabel: "Приоритетный вариант сотрудничества",
-    planPilot: "Пилотный проект на 1 месяц",
-    planAnnual: "Годовая лицензия (SaaS / Коробочное решение)",
-    planBoth: "Рассмотреть оба варианта",
+    planPilot: "Внедрение и обучение — $1 000 (единоразово)",
+    planAnnual: "Поддержка и оптимизация — $500 / мес. (до 10 аккаунтов)",
+    planBoth: "Полный пакет: $1 000 внедрение + $500 / мес. (до 10 аккаунтов)",
     submitBtn: "Сформировать именное КП",
     submittedBtn: "КП сформировано — отправить в WhatsApp",
     printBtn: "Скачать КП в PDF (2 стр.)",
@@ -202,47 +206,51 @@ const proposalCopy: Record<
         desc: "единая актуальная база данных по всем участкам и буровым станкам вместо разрозненных файлов Excel.",
       },
     ],
-    sec4Title: "4. Варианты сотрудничества",
-    tariff1Badge: "ТАРИФ 01 · БЫСТРАЯ ПРОВЕРКА В ПОЛЕ",
-    tariff1Title: "Внедрение пилотного проекта на 1 месяц",
+    sec4Title: "4. Стоимость и условия сотрудничества (до 10 аккаунтов)",
+    tariff1Badge: "ЭТАП 01 · СТАРТ И ЗАПУСК",
+    tariff1Price: "$1 000",
+    tariff1PriceNote: "единоразово · внедрение и обучение (до 10 аккаунтов)",
+    tariff1Title: "Внедрение системы и обучение команды",
     tariff1Target:
-      "Оптимально для проверки системы в реальных производственных условиях на 1 участке или буровом проекте без капитальных затрат.",
+      "Полный цикл развертывания базы данных Geocore.vista под стандарты вашего предприятия и практическая подготовка геологов к работе.",
     tariff1Points: [
       {
-        bold: "Быстрый старт за 1–2 рабочих дня:",
-        text: "развертывание защищенного пространства вашей компании и загрузка текущих скважин из существующих таблиц Excel.",
+        bold: "Развертывание и перенос данных за 1–2 рабочих дня:",
+        text: "настройка защищенного пространства вашей компании, структуры участков и загрузка текущих скважин из существующих таблиц Excel.",
       },
       {
-        bold: "Полный функционал для полевой бригады и главного геолога:",
-        text: "ведение координат, журналов литологии, рейсов керна, QA/QC, ежедневных сводок бурения и генерация актов A4.",
+        bold: "Подключение до 10 аккаунтов с ролевым доступом:",
+        text: "настройка прав для полевых геологов, главного геолога, камеральной группы и руководства (ADMIN, GEOLOGIST, VIEWER).",
       },
       {
-        bold: "Обучение и сопровождение:",
-        text: "практический инструктаж геологов (онлайн) и прямая техническая поддержка команды на протяжении всего пилотного месяца.",
+        bold: "Практическое обучение персонала:",
+        text: "живой инструктаж команды по ведению координат, журналов литологии, рейсов керна, QA/QC, суточных сводок бурения и выпуску актов A4.",
       },
     ],
     tariff1Result:
-      "Итог через 30 дней: оцифрованный массив по реальным скважинам, готовый пакет выгрузки для заказчика и точный расчет окупаемости для вашей компании.",
-    tariff2Badge: "ТАРИФ 02 · ПРОМЫШЛЕННАЯ ЭКСПЛУАТАЦИЯ",
-    tariff2Title: "Годовая лицензия (облачный SaaS / коробочное решение)",
+      "Итог этапа ($1 000): развернутая база данных по реальным скважинам, обученная геологическая служба (до 10 человек) и настроенный экспорт.",
+    tariff2Badge: "ЭТАП 02 · ЕЖЕМЕСЯЧНЫЙ ТАРИФ",
+    tariff2Price: "$500 / мес.",
+    tariff2PriceNote: "поддержка и оптимизация · до 10 аккаунтов",
+    tariff2Title: "Поддержка, сопровождение и оптимизация (до 10 аккаунтов)",
     tariff2Target:
-      "Для комплексной цифровизации всех геологоразведочных участков компании с централизованным управлением базой данных.",
+      "Бесперебойная эксплуатация базы данных на всех участках компании, техническое сопровождение полевых смен и адаптация шаблонов.",
     tariff2Points: [
       {
-        bold: "Два варианта развертывания на выбор:",
-        text: "облачная лицензия SaaS (мгновенный доступ без затрат на серверы) или коробочное решение On-Premise (установка во внутренний контур ИБ заказчика).",
+        bold: "Активная подписка до 10 аккаунтов:",
+        text: "одновременная работа полевых отрядов (включая офлайн-режим на буровой) и офиса с автоматической облачной синхронизацией и шифрованием AES-GCM.",
       },
       {
-        bold: "Без ограничений по числу проектов и скважин:",
-        text: "единая база данных предприятия, ролевой доступ для полевых отрядов, камеральной группы, руководства и представителей заказчика.",
+        bold: "Оптимизация и адаптация шаблонов выгрузки:",
+        text: "настройка выходных таблиц керна (COLLAR, SURVEY, LITHOLOGY, ASSAY), разрезов SVG/PDF и форм актов A4 под требования вашего заказчика.",
       },
       {
-        bold: "Адаптация шаблонов экспорта и SLA:",
-        text: "настройка выходных таблиц керна и форм актов под регламенты вашей компании, приоритетная техподдержка и все обновления системы.",
+        bold: "Приоритетная техническая поддержка и обновления:",
+        text: "оперативная помощь геологам, контроль целостности БД, резервное копирование и доступ ко всем новым модулям системы.",
       },
     ],
     tariff2Result:
-      "Итог: стандартизированный контур геологической документации компании, независимость от человеческого фактора и сокращение сроков камеральных работ на весь полевой сезон.",
+      "Итог ($500 / мес. до 10 аккаунтов): стабильный цифровой контур геологической документации без потерь данных и простоев весь полевой сезон.",
     sec5Title: "5. Следующий шаг — 15-минутная демонстрация на ваших данных",
     sec5Headline:
       "Оцените работу Geocore.vista на реальных данных вашего участка за 15 минут",
@@ -272,9 +280,9 @@ const proposalCopy: Record<
     phoneLabel: "Телефон нөмірі (WhatsApp) *",
     phonePlaceholder: "+7 (700) 000-00-00",
     planLabel: "Ынтымақтастықтың басым нұсқасы",
-    planPilot: "1 айға пилоттық жобаны енгізу",
-    planAnnual: "Жылдық лицензия (SaaS / Қораптық шешім)",
-    planBoth: "Екі нұсқаны да қарастыру",
+    planPilot: "Енгізу және оқыту — $1 000 (біржолғы)",
+    planAnnual: "Қолдау және оңтайландыру — $500 / ай (10 аккаунтқа дейін)",
+    planBoth: "Толық пакет: $1 000 енгізу + $500 / ай (10 аккаунтқа дейін)",
     submitBtn: "Атаулы КҰ қалыптастыру",
     submittedBtn: "КҰ дайын — WhatsApp-қа жіберу",
     printBtn: "КҰ PDF жүктеу (2 бет)",
@@ -362,47 +370,51 @@ const proposalCopy: Record<
         desc: "шашыраңқы Excel файлдарының орнына барлық учаскелер мен станоктар бойынша бірыңғай өзекті деректер базасы.",
       },
     ],
-    sec4Title: "4. Ынтымақтастық нұсқалары",
-    tariff1Badge: "01 ТАРИФ · ДАЛАДА ЖЫЛДАМ ТЕКСЕРУ",
-    tariff1Title: "1 айға пилоттық жобаны енгізу",
+    sec4Title: "4. Құны және ынтымақтастық шарттары (10 аккаунтқа дейін)",
+    tariff1Badge: "01 КЕЗЕҢ · ІСКЕ ҚОСУ ЖӘНЕ ОҚЫТУ",
+    tariff1Price: "$1 000",
+    tariff1PriceNote: "біржолғы төлем · енгізу және оқыту (10 аккаунтқа дейін)",
+    tariff1Title: "Жүйені енгізу және команданы оқыту",
     tariff1Target:
-      "Ірі шығынсыз 1 учаскеде немесе бұрғылау жобасында жүйені нақты өндірістік жағдайда тексеру үшін оңтайлы.",
+      "Geocore.vista деректер базасын кәсіпорын стандарттарына сай орналастыру және геологтарды жұмысқа практикалық дайындау.",
     tariff1Points: [
       {
-        bold: "1–2 жұмыс күні ішінде іске қосу:",
-        text: "компанияның қорғалған кеңістігін орналастыру және қолданыстағы Excel кестелерінен ағымдағы ұңғымаларды жүктеу.",
+        bold: "1–2 жұмыс күні ішінде орналастыру және деректерді көшіру:",
+        text: "компанияның қорғалған кеңістігін баптау және қолданыстағы Excel кестелерінен ағымдағы ұңғымаларды жүктеу.",
       },
       {
-        bold: "Далалық бригада мен бас геолог үшін толық функционал:",
-        text: "координаттарды, литология журналдарын, керн рейстерін, QA/QC, күнделікті бұрғылау мәліметтерін жүргізу және A4 актілерін генерациялау.",
+        bold: "Рөлдік қолжетімділікпен 10 аккаунтқа дейін қосу:",
+        text: "далалық геологтарға, бас геологқа, камералдық топқа және басшылыққа құқықтарды баптау (ADMIN, GEOLOGIST, VIEWER).",
       },
       {
-        bold: "Оқыту және сүйемелдеу:",
-        text: "геологтарға онлайн нұсқаулық өткізу және пилоттық ай бойы тікелей техникалық қолдау көрсету.",
+        bold: "Қызметкерлерді практикалық оқыту:",
+        text: "координаттарды, литология журналдарын, керн рейстерін, QA/QC, күнделікті бұрғылау мәліметтерін жүргізу және A4 актілерін шығару бойынша нұсқаулық.",
       },
     ],
     tariff1Result:
-      "30 күннен кейінгі нәтиже: нақты ұңғымалар бойынша цифрланған деректер, тапсырыс берушіге дайын пакет және компанияңыз үшін нақты тиімділік есебі.",
-    tariff2Badge: "02 ТАРИФ · ӨНДІРІСТІК ПАЙДАЛАНУ",
-    tariff2Title: "Жылдық лицензия (бұлттық SaaS / қораптық шешім)",
+      "Кезең нәтижесі ($1 000): нақты ұңғымалар бойынша дайын деректер базасы, оқытылған геологиялық қызмет (10 адамға дейін) және бапталған экспорт.",
+    tariff2Badge: "02 КЕЗЕҢ · АЙ САЙЫНҒЫ ТАРИФ",
+    tariff2Price: "$500 / ай",
+    tariff2PriceNote: "қолдау және оңтайландыру · 10 аккаунтқа дейін",
+    tariff2Title: "Қолдау, сүйемелдеу және оңтайландыру (10 аккаунтқа дейін)",
     tariff2Target:
-      "Деректер базасын орталықтандырылған басқарумен компанияның барлық геологиялық барлау учаскелерін кешенді цифрландыру үшін.",
+      "Компанияның барлық учаскелерінде деректер базасының үздіксіз жұмысы, далалық ауысымдарды техникалық сүйемелдеу және үлгілерді бейімдеу.",
     tariff2Points: [
       {
-        bold: "Орналастырудың екі нұсқасы:",
-        text: "бұлттық SaaS лицензиясы (сервер шығынынсыз жылдам қосылу) немесе On-Premise қораптық шешімі (тапсырыс берушінің ішкі серверлеріне орнату).",
+        bold: "10 аккаунтқа дейін белсенді жазылым:",
+        text: "далалық отрядтардың (интернетсіз офлайн режимді қоса) және кеңсенің автоматты бұлттық синхрондаумен және AES-GCM шифрлауымен бірлескен жұмысы.",
       },
       {
-        bold: "Жобалар мен ұңғымалар санына шектеусіз:",
-        text: "кәсіпорынның бірыңғай деректер базасы, далалық отрядтарға, камералдық топқа және басшылыққа арналған рөлдік қолжетімділік.",
+        bold: "Экспорт үлгілерін оңтайландыру және бейімдеу:",
+        text: "тапсырыс берушінің талаптарына сәйкес керн кестелерін (COLLAR, SURVEY, LITHOLOGY, ASSAY), SVG/PDF қималарын және A4 акт нысандарын баптау.",
       },
       {
-        bold: "Экспорт үлгілерін бейімдеу және SLA:",
-        text: "компания регламенттеріне сәйкес керн кестелері мен акт нысандарын баптау, басым техникалық қолдау және жүйе жаңартулары.",
+        bold: "Басым техникалық қолдау және жаңартулар:",
+        text: "геологтарға жедел көмек, ДБ бүтіндігін бақылау, резервтік көшіру және жүйенің барлық жаңа модульдеріне қолжетімділік.",
       },
     ],
     tariff2Result:
-      "Нәтиже: компанияның стандартталған геологиялық құжаттама контуры, адами фактордан тәуелсіздік және камералдық жұмыс мерзімін қысқарту.",
+      "Нәтиже ($500 / ай, 10 аккаунтқа дейін): бүкіл далалық маусым бойы деректерді жоғалтпайтын стандартталған цифрлық геологиялық құжаттама контуры.",
     sec5Title: "5. Келесі қадам — сіздің деректеріңізде 15 минуттық демонстрация",
     sec5Headline:
       "15 минут ішінде өз учаскеңіздің нақты деректерінде Geocore.vista жұмысын бағалаңыз",
@@ -432,9 +444,9 @@ const proposalCopy: Record<
     phoneLabel: "Phone Number (WhatsApp) *",
     phonePlaceholder: "+7 (700) 000-00-00",
     planLabel: "Preferred Cooperation Model",
-    planPilot: "1-Month Pilot Project Deployment",
-    planAnnual: "Annual License (SaaS / On-Premise Boxed)",
-    planBoth: "Evaluate Both Options",
+    planPilot: "Implementation & Training — $1,000 (one-time)",
+    planAnnual: "Support & Optimization — $500 / mo (up to 10 accounts)",
+    planBoth: "Full Package: $1,000 setup + $500 / mo (up to 10 accounts)",
     submitBtn: "Generate Personalized Proposal",
     submittedBtn: "Proposal Ready — Send via WhatsApp",
     printBtn: "Download Proposal PDF (2 pages)",
@@ -522,47 +534,51 @@ const proposalCopy: Record<
         desc: "a single synchronized source of truth across all prospects and drill rigs instead of scattered files.",
       },
     ],
-    sec4Title: "4. Cooperation Options",
-    tariff1Badge: "OPTION 01 · RAPID FIELD VALIDATION",
-    tariff1Title: "1-Month Pilot Project Deployment",
+    sec4Title: "4. Pricing & Cooperation Terms (Up to 10 Accounts)",
+    tariff1Badge: "STAGE 01 · ONBOARDING & LAUNCH",
+    tariff1Price: "$1,000",
+    tariff1PriceNote: "one-time fee · deployment & training (up to 10 accounts)",
+    tariff1Title: "System Deployment & Team Training",
     tariff1Target:
-      "Designed to benchmark the system under real operating conditions on 1 active prospect or drilling program with zero long-term commitment.",
+      "Complete setup of the Geocore.vista database tailored to your exploration workflow and hands-on training for your geological staff.",
     tariff1Points: [
       {
-        bold: "Rapid onboarding in 1–2 business days:",
-        text: "provisioning of your company's encrypted workspace and import of active drillholes from existing Excel logs.",
+        bold: "Workspace deployment & data migration in 1–2 business days:",
+        text: "provisioning of your company's encrypted database, project structure, and import of active drillholes from existing Excel sheets.",
       },
       {
-        bold: "Full module access for field crew and chief geologist:",
-        text: "collar management, lithology logging, core runs, QA/QC, daily shift reports, cross-sections, and A4 certificates.",
+        bold: "Setup of up to 10 role-based user accounts:",
+        text: "access configuration for field geologists, chief geologist, office modelers, and management (ADMIN, GEOLOGIST, VIEWER).",
       },
       {
-        bold: "Training and dedicated support:",
-        text: "live online onboarding session for geologists and direct engineering support throughout the 30-day pilot.",
+        bold: "Hands-on team training:",
+        text: "live onboarding covering collar coordinates, lithology logs, core runs, QA/QC sampling, daily shift reports, and A4 statutory certificates.",
       },
     ],
     tariff1Result:
-      "30-Day Outcome: digitized drillholes from your active site, client-ready export package, and verified time-savings metrics for your team.",
-    tariff2Badge: "OPTION 02 · ENTERPRISE PRODUCTION",
-    tariff2Title: "Annual License (Cloud SaaS / On-Premise Boxed)",
+      "Stage Outcome ($1,000): production-ready database with your drillholes, trained geological team (up to 10 users), and configured exports.",
+    tariff2Badge: "STAGE 02 · MONTHLY SUBSCRIPTION",
+    tariff2Price: "$500 / mo",
+    tariff2PriceNote: "support & optimization · up to 10 accounts",
+    tariff2Title: "Monthly Support, Maintenance & Optimization (Up to 10 Accounts)",
     tariff2Target:
-      "For company-wide standardization across all exploration licenses, field crews, and office modeling teams.",
+      "Continuous operation across all active drill sites, priority engineering support, and ongoing workflow optimization.",
     tariff2Points: [
       {
-        bold: "Flexible deployment architecture:",
-        text: "Cloud SaaS subscription (instant rollout, zero server maintenance) or On-Premise boxed installation on your internal corporate infrastructure.",
+        bold: "Active license for up to 10 accounts:",
+        text: "simultaneous field and office access (including offline rig mode) with automatic cloud synchronization and AES-GCM encryption.",
       },
       {
-        bold: "Unlimited projects and drillholes:",
-        text: "centralized company database with granular role permissions for field geologists, office modelers, management, and auditors.",
+        bold: "Ongoing optimization & custom export templates:",
+        text: "tailoring of core export schemas (COLLAR, SURVEY, LITHOLOGY, ASSAY), SVG/PDF cross-sections, and A4 certificates to client standards.",
       },
       {
-        bold: "Custom export templates and priority SLA:",
-        text: "tailoring of core export schemas and A4 certificate templates to your corporate standards, priority support, and all product updates.",
+        bold: "Priority technical support & updates:",
+        text: "direct assistance for field shifts, database integrity monitoring, automated backups, and all new platform releases.",
       },
     ],
     tariff2Result:
-      "Outcome: a standardized, audit-ready geological data pipeline that eliminates manual transcription delays across the entire drilling season.",
+      "Outcome ($500 / mo for up to 10 accounts): a reliable, audit-ready geological documentation pipeline across the entire drilling season.",
     sec5Title: "5. Next Step — 15-Minute Live Demo on Your Data",
     sec5Headline:
       "See Geocore.vista in Action on Your Own Drillhole Data in 15 Minutes",
@@ -599,7 +615,7 @@ export function CommercialProposalModal({
       fullName: "",
       company: "",
       phone: "",
-      plan: "pilot",
+      plan: "both",
     };
   });
 
@@ -1025,6 +1041,12 @@ export function CommercialProposalModal({
                       <span className="mono kp-tariff-badge">
                         {c.tariff1Badge}
                       </span>
+                      <div className="kp-tariff-price-box">
+                        <b className="mono kp-tariff-price">{c.tariff1Price}</b>
+                        <span className="kp-tariff-price-note">
+                          {c.tariff1PriceNote}
+                        </span>
+                      </div>
                       <h3>{c.tariff1Title}</h3>
                       <p className="kp-tariff-target">{c.tariff1Target}</p>
                     </div>
@@ -1051,6 +1073,12 @@ export function CommercialProposalModal({
                       <span className="mono kp-tariff-badge kp-tariff-badge-copper">
                         {c.tariff2Badge}
                       </span>
+                      <div className="kp-tariff-price-box kp-tariff-price-box-copper">
+                        <b className="mono kp-tariff-price">{c.tariff2Price}</b>
+                        <span className="kp-tariff-price-note">
+                          {c.tariff2PriceNote}
+                        </span>
+                      </div>
                       <h3>{c.tariff2Title}</h3>
                       <p className="kp-tariff-target">{c.tariff2Target}</p>
                     </div>

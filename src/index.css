@@ -3781,6 +3781,42 @@ section[id] {
   color: #9e4322;
 }
 
+.kp-tariff-price-box {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: #eff4ed;
+  border: 1px solid #cfe0cb;
+  border-left: 4px solid var(--pine);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.kp-tariff-price-box-copper {
+  background: #fdf4ef;
+  border-color: #edd0c2;
+  border-left-color: var(--copper);
+}
+
+.kp-tariff-price {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--pine);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.kp-tariff-price-box-copper .kp-tariff-price {
+  color: var(--copper);
+}
+
+.kp-tariff-price-note {
+  font-size: 11px;
+  font-weight: 500;
+  color: #3c4b41;
+  line-height: 1.35;
+}
+
 .kp-tariff-top h3 {
   font-size: 16px;
   font-weight: 600;

@@ -31,11 +31,15 @@ export interface ProposalPdfInput {
     sec3Metrics: { value: string; label: string; desc: string }[];
     sec4Title: string;
     tariff1Badge: string;
+    tariff1Price: string;
+    tariff1PriceNote: string;
     tariff1Title: string;
     tariff1Target: string;
     tariff1Points: { bold: string; text: string }[];
     tariff1Result: string;
     tariff2Badge: string;
+    tariff2Price: string;
+    tariff2PriceNote: string;
     tariff2Title: string;
     tariff2Target: string;
     tariff2Points: { bold: string; text: string }[];
@@ -691,11 +695,13 @@ function renderPage2(input: ProposalPdfInput): HTMLCanvasElement {
 
   const colGap = 28;
   const cardW = (CONTENT_W - colGap) / 2;
-  const cardH = 920;
+  const cardH = 960;
 
   const drawTariffCard = (
     cx: number,
     badge: string,
+    price: string,
+    priceNote: string,
     title: string,
     target: string,
     points: { bold: string; text: string }[],
@@ -715,39 +721,68 @@ function renderPage2(input: ProposalPdfInput): HTMLCanvasElement {
       ctx.fillRect(cx, y, cardW, 6);
     }
 
-    let ty = y + 28;
+    let ty = y + 24;
     const padX = cx + 26;
     const innerW = cardW - 52;
 
     // Badge
-    setFont(ctx, 600, 13.5, true);
+    setFont(ctx, 600, 13, true);
     const bW = ctx.measureText(badge).width + 24;
     ctx.fillStyle = isCopperBadge ? "#f7e7e0" : "#e3ebe4";
     ctx.fillRect(padX, ty, bW, 28);
     ctx.fillStyle = isCopperBadge ? "#9e3e1c" : COLORS.pine;
     ctx.fillText(badge, padX + 12, ty + 7);
 
-    ty += 44;
+    ty += 40;
+
+    // Prominent Price Box ($1 000 / $500 / мес.)
+    const priceBoxH = 72;
+    ctx.fillStyle = isCopperBadge ? "#fdf4ef" : "#eff4ed";
+    ctx.fillRect(padX, ty, innerW, priceBoxH);
+    ctx.strokeStyle = isCopperBadge ? "#edd0c2" : "#cfe0cb";
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(padX, ty, innerW, priceBoxH);
+    ctx.fillStyle = isCopperBadge ? COLORS.copper : COLORS.pine;
+    ctx.fillRect(padX, ty, 5, priceBoxH);
+
+    setFont(ctx, 700, 31, true);
+    ctx.fillStyle = isCopperBadge ? COLORS.copper : COLORS.pine;
+    ctx.fillText(price, padX + 18, ty + 11);
+    const prW = ctx.measureText(price).width;
+
+    setFont(ctx, 500, 15.5);
+    ctx.fillStyle = "#3c4b41";
+    drawWrappedText(
+      ctx,
+      priceNote,
+      padX + 18,
+      ty + 46,
+      innerW - 28,
+      20,
+    );
+    void prW;
+
+    ty += priceBoxH + 16;
 
     // Tariff Title
-    setFont(ctx, 600, 24);
+    setFont(ctx, 600, 22.5);
     ctx.fillStyle = COLORS.ink;
-    ty = drawWrappedText(ctx, title, padX, ty, innerW, 31);
-    ty += 10;
+    ty = drawWrappedText(ctx, title, padX, ty, innerW, 29);
+    ty += 8;
 
     // Target description
-    setFont(ctx, 400, 17.5);
+    setFont(ctx, 400, 16.5);
     ctx.fillStyle = "#526055";
-    ty = drawWrappedText(ctx, target, padX, ty, innerW, 24);
-    ty += 16;
+    ty = drawWrappedText(ctx, target, padX, ty, innerW, 23);
+    ty += 14;
 
     ctx.fillStyle = "#e1e6dc";
     ctx.fillRect(padX, ty, innerW, 1.5);
-    ty += 20;
+    ty += 16;
 
     // Bullet points
     for (const pt of points) {
-      setFont(ctx, 700, 20);
+      setFont(ctx, 700, 19);
       ctx.fillStyle = COLORS.copper;
       ctx.fillText("•", padX, ty);
 
@@ -758,31 +793,33 @@ function renderPage2(input: ProposalPdfInput): HTMLCanvasElement {
         padX + 22,
         ty,
         innerW - 22,
-        17.5,
-        25,
+        16.8,
+        23.5,
         COLORS.ink,
         "#2f3e36",
         false,
       );
-      ty += 16;
+      ty += 13;
     }
 
     // Outcome box anchored near bottom of card
-    const outBoxH = 148;
-    const outY = y + cardH - outBoxH - 24;
+    const outBoxH = 136;
+    const outY = y + cardH - outBoxH - 22;
     ctx.fillStyle = "#f2f5ef";
     ctx.fillRect(padX, outY, innerW, outBoxH);
     ctx.fillStyle = COLORS.pine;
     ctx.fillRect(padX, outY, 5, outBoxH);
 
-    setFont(ctx, 600, 17);
+    setFont(ctx, 600, 16.5);
     ctx.fillStyle = COLORS.ink;
-    drawWrappedText(ctx, result, padX + 18, outY + 18, innerW - 32, 24);
+    drawWrappedText(ctx, result, padX + 18, outY + 16, innerW - 32, 23);
   };
 
   drawTariffCard(
     MARGIN_X,
     c.tariff1Badge,
+    c.tariff1Price,
+    c.tariff1PriceNote,
     c.tariff1Title,
     c.tariff1Target,
     c.tariff1Points,
@@ -794,6 +831,8 @@ function renderPage2(input: ProposalPdfInput): HTMLCanvasElement {
   drawTariffCard(
     MARGIN_X + cardW + colGap,
     c.tariff2Badge,
+    c.tariff2Price,
+    c.tariff2PriceNote,
     c.tariff2Title,
     c.tariff2Target,
     c.tariff2Points,
@@ -802,10 +841,10 @@ function renderPage2(input: ProposalPdfInput): HTMLCanvasElement {
     true,
   );
 
-  y += cardH + 38;
+  y += cardH + 30;
 
   // 6. Call to Action Box (15-Minute Demo)
-  const ctaH = 665;
+  const ctaH = 640;
   ctx.fillStyle = COLORS.pine;
   ctx.fillRect(MARGIN_X, y, CONTENT_W, ctaH);
   // Copper top border
