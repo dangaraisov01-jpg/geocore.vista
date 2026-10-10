@@ -23,6 +23,7 @@ export const translations = {
       langAria: "Выбор языка",
       menuOpen: "Открыть меню",
       menuClose: "Закрыть меню",
+      proposalBtn: "Получить КП",
       nav: [
         ["Возможности", "#capabilities"],
         ["Результат", "#output"],
@@ -38,6 +39,7 @@ export const translations = {
       description:
         "Проекты, геологическая документация и контроль данных — в одной системе. На участке, в офисе и между командами.",
       cta: "Посмотреть возможности",
+      proposalCta: "Получить коммерческое предложение",
       bottomSubLine1: "Создано вокруг",
       bottomSubLine2: "реальной работы геолога",
       coreAlt:
@@ -339,6 +341,7 @@ export const translations = {
       closingEyebrow: "Свяжитесь с нами",
       closingTitleLine1: "Связаться с командой",
       closingTitleLine2: "Geocore.vista",
+      closingProposalBtn: "Получить коммерческое предложение",
       closingCaption: "WhatsApp и почта для связи и подключения",
       topAria: "Начало страницы",
       tagline: "Рабочая среда геологической документации",
@@ -354,6 +357,7 @@ export const translations = {
       langAria: "Тілді таңдау",
       menuOpen: "Мәзірді ашу",
       menuClose: "Мәзірді жабу",
+      proposalBtn: "КҰ алу",
       nav: [
         ["Мүмкіндіктер", "#capabilities"],
         ["Нәтиже", "#output"],
@@ -369,6 +373,7 @@ export const translations = {
       description:
         "Жобалар, геологиялық құжаттама және деректерді бақылау — бір жүйеде. Учаскеде, кеңседе және командалар арасында.",
       cta: "Мүмкіндіктерді көру",
+      proposalCta: "Коммерциялық ұсыныс алу",
       bottomSubLine1: "Геологтың нақты",
       bottomSubLine2: "жұмысы негізінде жасалған",
       coreAlt:
@@ -670,6 +675,7 @@ export const translations = {
       closingEyebrow: "Бізбен байланысыңыз",
       closingTitleLine1: "Geocore.vista командасымен",
       closingTitleLine2: "байланысу",
+      closingProposalBtn: "Коммерциялық ұсыныс алу",
       closingCaption: "Байланыс және қосылу үшін WhatsApp пен пошта",
       topAria: "Беттің басы",
       tagline: "Геологиялық құжаттаманың жұмыс ортасы",
@@ -685,6 +691,7 @@ export const translations = {
       langAria: "Language switcher",
       menuOpen: "Open menu",
       menuClose: "Close menu",
+      proposalBtn: "Get Proposal",
       nav: [
         ["Capabilities", "#capabilities"],
         ["Deliverables", "#output"],
@@ -700,6 +707,7 @@ export const translations = {
       description:
         "Projects, geological logging, and data validation in one environment. At the drill site, in the office, and across teams.",
       cta: "Explore capabilities",
+      proposalCta: "Get commercial proposal",
       bottomSubLine1: "Built around",
       bottomSubLine2: "real field geology workflows",
       coreAlt: "Drill core samples with quartz veining and oxidation zones",
@@ -1000,6 +1008,7 @@ export const translations = {
       closingEyebrow: "Get in touch",
       closingTitleLine1: "Connect with the",
       closingTitleLine2: "Geocore.vista team",
+      closingProposalBtn: "Get commercial proposal",
       closingCaption: "WhatsApp and email for inquiries and onboarding",
       topAria: "Top of page",
       tagline: "Geological logging & documentation workspace",
@@ -1013,15 +1022,20 @@ type I18nContextValue = {
   lang: Lang;
   setLang: (lang: Lang) => void;
   t: (typeof translations)["ru"];
+  proposalOpen: boolean;
+  setProposalOpen: (open: boolean) => void;
 };
 
 const I18nContext = createContext<I18nContextValue>({
   lang: "ru",
   setLang: () => {},
   t: translations.ru,
+  proposalOpen: false,
+  setProposalOpen: () => {},
 });
 
 export function I18nProvider({ children }: { children: ReactNode }) {
+  const [proposalOpen, setProposalOpen] = useState(false);
   const [lang, setLangState] = useState<Lang>(() => {
     try {
       const saved = localStorage.getItem("geocore_lang");
@@ -1046,7 +1060,15 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   }, [lang]);
 
   return (
-    <I18nContext.Provider value={{ lang, setLang, t: translations[lang] }}>
+    <I18nContext.Provider
+      value={{
+        lang,
+        setLang,
+        t: translations[lang],
+        proposalOpen,
+        setProposalOpen,
+      }}
+    >
       {children}
     </I18nContext.Provider>
   );

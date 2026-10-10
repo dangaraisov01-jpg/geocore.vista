@@ -10,10 +10,11 @@ import {
   FAQ,
   Footer,
 } from "./components/showcase/Details";
+import { CommercialProposalModal } from "./components/showcase/CommercialProposalModal";
 import { I18nProvider, useI18n } from "./i18n";
 
 function PageContent() {
-  const { t } = useI18n();
+  const { t, proposalOpen, setProposalOpen } = useI18n();
   return (
     <>
       <a className="skip-link" href="#main">
@@ -30,6 +31,10 @@ function PageContent() {
         <FAQ />
         <Footer />
       </main>
+      <CommercialProposalModal
+        open={proposalOpen}
+        onClose={() => setProposalOpen(false)}
+      />
     </>
   );
 }

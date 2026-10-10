@@ -3208,3 +3208,815 @@ section[id] {
     font-size: 8px;
   }
 }
+
+/* Header Commercial Proposal Button */
+.header-kp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 13px;
+  background: var(--copper);
+  color: #fff;
+  border: 1px solid var(--copper);
+  font-size: 11.5px;
+  font-weight: 550;
+  line-height: 1;
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+.header-kp-btn:hover {
+  background: #b65332;
+  border-color: #b65332;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* Commercial Proposal Modal Window */
+.kp-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: rgba(13, 25, 22, 0.82);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.kp-modal-window {
+  width: min(1160px, 100%);
+  max-height: calc(100dvh - 40px);
+  background: #e9ece4;
+  border: 1px solid #2e483f;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.48);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.kp-modal-topbar {
+  background: var(--pine);
+  color: var(--paper);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid #2d473e;
+  flex-shrink: 0;
+}
+
+.kp-modal-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.kp-topbar-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 5px 9px;
+  background: rgba(201, 97, 60, 0.2);
+  border: 1px solid rgba(201, 97, 60, 0.55);
+  color: #f3b59c;
+}
+
+.kp-modal-topbar-left strong {
+  font-size: 13.5px;
+  font-weight: 550;
+  color: #f5f3ec;
+}
+
+.kp-modal-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.kp-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 13px;
+  font-size: 11.5px;
+  font-weight: 500;
+  border: 1px solid #415c51;
+  background: #1d3630;
+  color: var(--paper);
+  transition: border-color 0.18s ease;
+}
+
+.kp-action-btn:hover {
+  border-color: var(--copper);
+  color: #fff;
+}
+
+.kp-close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: transparent;
+  border: 1px solid #385247;
+  color: var(--paper);
+}
+
+.kp-close-btn:hover {
+  border-color: var(--copper);
+  color: #fff;
+}
+
+.kp-modal-body {
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Lead Form Panel inside Modal */
+.kp-lead-panel {
+  background: var(--paper);
+  border: 1px solid #cbd3c5;
+  padding: 22px 26px;
+  box-shadow: 0 8px 24px rgba(20, 40, 36, 0.06);
+}
+
+.kp-lead-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.kp-lead-header .eyebrow {
+  color: var(--copper);
+}
+
+.kp-lead-header p {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.55;
+  max-width: 680px;
+}
+
+.kp-lead-hint {
+  font-size: 10px;
+  color: #6b7a6c;
+  background: #e7ece2;
+  padding: 6px 10px;
+  border: 1px solid #d4dcd0;
+  white-space: nowrap;
+}
+
+.kp-lead-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px 16px;
+  margin-top: 18px;
+}
+
+.kp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kp-field label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 550;
+  color: var(--ink);
+}
+
+.kp-field label svg {
+  color: var(--copper);
+}
+
+.kp-field input,
+.kp-field select {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid #c3ccc0;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.kp-field input:focus,
+.kp-field select:focus {
+  border-color: var(--copper);
+  box-shadow: 0 0 0 2px rgba(201, 97, 60, 0.15);
+}
+
+.kp-form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.kp-form-actions .button {
+  padding: 13px 18px;
+  font-size: 12.5px;
+  gap: 9px;
+}
+
+.kp-whatsapp-btn {
+  background: var(--pine);
+  color: var(--paper);
+}
+
+.kp-whatsapp-btn:hover {
+  background: #213e37;
+}
+
+.kp-print-secondary {
+  background: #e4e9df;
+  color: var(--ink);
+  border-color: #c5cfc1;
+}
+
+.kp-print-secondary:hover {
+  background: #d8e0d2;
+}
+
+.kp-form-error {
+  grid-column: 1 / -1;
+  padding: 10px 14px;
+  background: #fbeae5;
+  border-left: 3px solid var(--copper);
+  color: #8f3519;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.kp-form-success {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #e1efe4;
+  border-left: 3px solid #2e6f4e;
+  color: #1c4932;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+/* 2-Page Commercial Proposal Document Stack */
+.kp-document-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.kp-sheet {
+  background: #ffffff;
+  color: var(--ink);
+  border: 1px solid #cbd3c5;
+  box-shadow: 0 12px 32px rgba(20, 40, 36, 0.08);
+  padding: 36px 42px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.kp-sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--pine);
+}
+
+.kp-sheet-header-compact {
+  padding-bottom: 12px;
+}
+
+.kp-sheet-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.kp-brand-title {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  display: block;
+  line-height: 1;
+}
+
+.kp-brand-title span {
+  color: var(--copper);
+}
+
+.kp-brand-title b {
+  font-weight: 400;
+}
+
+.kp-sheet-brand small {
+  display: block;
+  font-size: 8.5px;
+  letter-spacing: 0.09em;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.kp-sheet-meta {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.kp-sheet-meta strong {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--pine);
+}
+
+.kp-sheet-meta span {
+  font-size: 9.5px;
+  color: var(--muted);
+}
+
+/* Recipient Bar */
+.kp-recipient-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  background: #f5f6f1;
+  border: 1px solid #dce2d6;
+  border-left: 4px solid var(--copper);
+  padding: 13px 18px;
+}
+
+.kp-recipient-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.kp-recipient-col > span {
+  font-size: 8.5px;
+  letter-spacing: 0.08em;
+  color: #6f7c6f;
+}
+
+.kp-recipient-col > strong {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.kp-recipient-col > p {
+  font-size: 11.5px;
+  color: #4f5d52;
+}
+
+/* Offer Hero inside Sheet 1 */
+.kp-offer-hero {
+  background: var(--pine);
+  color: var(--paper);
+  padding: 22px 26px;
+}
+
+.kp-offer-eyebrow {
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: #e49778;
+  display: block;
+}
+
+.kp-offer-hero h1 {
+  font-size: clamp(19px, 2.1vw, 24px);
+  line-height: 1.28;
+  margin-top: 8px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.kp-offer-hero p {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #c6d2c7;
+  margin-top: 9px;
+}
+
+/* Document Sections */
+.kp-doc-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kp-sec-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #e1e6dc;
+  padding-bottom: 7px;
+}
+
+.kp-sec-heading svg {
+  color: var(--copper);
+  flex-shrink: 0;
+}
+
+.kp-sec-heading h2 {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--pine);
+}
+
+.kp-sec-intro {
+  font-size: 12.5px;
+  color: #4a574d;
+  line-height: 1.55;
+}
+
+.kp-bullet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 9px;
+}
+
+.kp-bullet-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #2f3e36;
+  background: #fafbf8;
+  border: 1px solid #e6ebe1;
+  padding: 10px 13px;
+}
+
+.kp-bullet-list li strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.kp-bullet-index {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--copper);
+  background: #f7e9e3;
+  padding: 2px 6px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.kp-check-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: #dff0e4;
+  color: #1f5c3a;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Metrics Grid (Section 3) */
+.kp-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.kp-metric-card {
+  background: #f4f6f0;
+  border: 1px solid #d7dfd1;
+  border-top: 3px solid var(--pine);
+  padding: 13px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kp-metric-card b {
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--copper);
+  letter-spacing: -0.03em;
+}
+
+.kp-metric-card strong {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.kp-metric-card p {
+  font-size: 11px;
+  line-height: 1.48;
+  color: #556357;
+}
+
+/* Tariffs Grid (Section 4) */
+.kp-tariffs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.kp-tariff-card {
+  border: 1px solid #cfd8c9;
+  background: #fafbf8;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.kp-tariff-selected {
+  border-color: var(--pine);
+  box-shadow: inset 0 0 0 1px var(--pine);
+  background: #ffffff;
+}
+
+.kp-tariff-badge {
+  display: inline-block;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  padding: 4px 8px;
+  background: #e3eae0;
+  color: var(--pine);
+  font-weight: 600;
+}
+
+.kp-tariff-badge-copper {
+  background: #f6e4dc;
+  color: #9e4322;
+}
+
+.kp-tariff-top h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: 9px;
+}
+
+.kp-tariff-target {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #536155;
+  margin-top: 6px;
+}
+
+.kp-tariff-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.kp-tariff-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #2f3e36;
+}
+
+.kp-tariff-list li > span {
+  color: var(--copper);
+  font-weight: 700;
+}
+
+.kp-tariff-outcome {
+  background: #eef2ea;
+  border-left: 3px solid var(--pine);
+  padding: 10px 12px;
+  font-size: 11.5px;
+  line-height: 1.48;
+  color: var(--ink);
+}
+
+/* CTA Box (Section 5) */
+.kp-cta-box {
+  background: var(--pine);
+  color: var(--paper);
+  padding: 22px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.kp-cta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9.5px;
+  letter-spacing: 0.09em;
+  color: #e49778;
+}
+
+.kp-cta-header h2 {
+  font-size: 19px;
+  color: #ffffff;
+  margin-top: 6px;
+}
+
+.kp-cta-header p {
+  font-size: 12.5px;
+  color: #c5d1c6;
+  margin-top: 6px;
+  line-height: 1.55;
+}
+
+.kp-cta-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.kp-cta-bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #eef2ec;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 9px 12px;
+}
+
+.kp-cta-bullets li svg {
+  color: #e49778;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.kp-cta-footer {
+  border-top: 1px solid #314b42;
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kp-cta-footer p {
+  font-size: 12px;
+  color: #b8c6b9;
+}
+
+.kp-cta-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.kp-cta-contacts .button {
+  padding: 12px 16px;
+  font-size: 12px;
+  gap: 10px;
+}
+
+.kp-sheet-footer {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #dce2d6;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: #778478;
+}
+
+@media (max-width: 980px) {
+  .kp-lead-form {
+    grid-template-columns: 1fr 1fr;
+  }
+  .kp-metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .kp-tariffs-grid {
+    grid-template-columns: 1fr;
+  }
+  .kp-recipient-bar {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .kp-modal-backdrop {
+    padding: 8px;
+  }
+  .kp-modal-window {
+    max-height: calc(100dvh - 16px);
+  }
+  .kp-modal-topbar {
+    padding: 12px 14px;
+  }
+  .kp-modal-topbar-left strong {
+    font-size: 11.5px;
+  }
+  .kp-action-print span {
+    display: none;
+  }
+  .kp-modal-body {
+    padding: 12px;
+  }
+  .kp-lead-panel {
+    padding: 16px;
+  }
+  .kp-lead-header {
+    flex-direction: column;
+  }
+  .kp-lead-hint {
+    white-space: normal;
+  }
+  .kp-lead-form {
+    grid-template-columns: 1fr;
+  }
+  .kp-sheet {
+    padding: 20px 16px;
+  }
+  .kp-sheet-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .kp-sheet-meta {
+    text-align: left;
+  }
+  .kp-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Print Layout: Print cleanly as a 2-page Commercial Proposal */
+@media print {
+  body > #root > a.skip-link,
+  body > #root > header,
+  body > #root > main,
+  .no-print {
+    display: none !important;
+  }
+  body,
+  .kp-modal-backdrop,
+  .kp-modal-window,
+  .kp-modal-body,
+  .kp-document-stack {
+    position: static !important;
+    background: #fff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    width: 100% !important;
+  }
+  .kp-sheet {
+    box-shadow: none !important;
+    border: 0 !important;
+    padding: 12mm 14mm !important;
+    page-break-after: always;
+    break-after: page;
+  }
+  .kp-sheet-page2 {
+    page-break-after: auto;
+    break-after: auto;
+  }
+}
+

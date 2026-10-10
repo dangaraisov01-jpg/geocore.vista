@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { ArrowDown, ArrowUpRight, Menu, X, MoveUpRight } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowUpRight,
+  Menu,
+  X,
+  MoveUpRight,
+  FileText,
+} from "lucide-react";
 import { LANG_LABELS, useI18n } from "../../i18n";
 
 export const CONTACT_PHONE = "+77064101339";
@@ -20,7 +27,7 @@ export function Brand({ light = false }: { light?: boolean }) {
 }
 export function Header() {
   const [open, setOpen] = useState(false);
-  const { lang, setLang, t } = useI18n();
+  const { lang, setLang, t, setProposalOpen } = useI18n();
   return (
     <header className="header">
       <div className="header-inner">
@@ -39,6 +46,14 @@ export function Header() {
         </nav>
         <div className="header-actions">
           <div className="header-cta">
+            <button
+              type="button"
+              className="header-kp-btn"
+              onClick={() => setProposalOpen(true)}
+            >
+              <FileText size={14} />
+              {t.header.proposalBtn}
+            </button>
             <a
               href={CONTACT_WHATSAPP_URL}
               target="_blank"
@@ -80,7 +95,7 @@ export function Header() {
   );
 }
 export function Hero() {
-  const { t } = useI18n();
+  const { t, setProposalOpen } = useI18n();
   return (
     <section className="hero">
       <div className="wrap hero-grid">
@@ -97,7 +112,15 @@ export function Hero() {
           </h1>
           <p className="hero-description">{t.hero.description}</p>
           <div className="hero-actions">
-            <a className="button button-copper" href="#capabilities">
+            <button
+              type="button"
+              className="button button-copper"
+              onClick={() => setProposalOpen(true)}
+            >
+              <FileText size={18} />
+              {t.hero.proposalCta}
+            </button>
+            <a className="button button-outline-light" href="#capabilities">
               {t.hero.cta} <ArrowDown size={18} />
             </a>
             <div className="hero-contacts">

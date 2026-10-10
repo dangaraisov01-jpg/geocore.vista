@@ -228,7 +228,7 @@ export function FAQ() {
   );
 }
 export function Footer() {
-  const { t } = useI18n();
+  const { t, setProposalOpen } = useI18n();
   return (
     <>
       <section className="closing">
@@ -243,8 +243,16 @@ export function Footer() {
           </div>
           <div className="closing-contacts">
             <div className="closing-links">
-              <a
+              <button
+                type="button"
                 className="button button-copper"
+                onClick={() => setProposalOpen(true)}
+              >
+                <FileText size={18} />
+                {t.footer.closingProposalBtn}
+              </button>
+              <a
+                className="button button-outline-light"
                 href={CONTACT_WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
