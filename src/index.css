@@ -526,13 +526,13 @@ section[id] {
 .product-tabs button {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   white-space: nowrap;
   border: 0;
   background: none;
-  font-size: 12px;
+  font-size: 11.5px;
   color: #71806f;
-  padding: 18px 21px 18px 12px;
+  padding: 18px 14px 18px 12px;
   flex: 1;
   position: relative;
 }

@@ -1,0 +1,431 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1372 880" width="1372" height="880" font-family="'Golos Text', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <!-- Card shadow -->
+    <filter id="cardShadow" x="-2%" y="-2%" width="104%" height="106%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0f1e19" flood-opacity="0.04"/>
+    </filter>
+    <!-- Green Header Gradient -->
+    <linearGradient id="headerBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#19382d"/>
+      <stop offset="55%" stop-color="#1f4236"/>
+      <stop offset="100%" stop-color="#244a3c"/>
+    </linearGradient>
+    <linearGradient id="headerGlow" x1="0.8" y1="0" x2="0.2" y2="1">
+      <stop offset="0%" stop-color="#3c6e5a" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#19382d" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Primary Green Button Gradient -->
+    <linearGradient id="greenBtn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#234d3e"/>
+      <stop offset="100%" stop-color="#1b3c30"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Page Background -->
+  <rect width="1372" height="880" fill="#f3f4ef"/>
+
+  <!-- Top Container Card -->
+  <g filter="url(#cardShadow)">
+    <rect x="14" y="12" width="1344" height="398" rx="14" fill="#fafaf7" stroke="#dfded6" stroke-width="1"/>
+  </g>
+
+  <!-- Dark Green Banner Inside Top Card -->
+  <g>
+    <clipPath id="bannerClip">
+      <rect x="26" y="24" width="1320" height="222" rx="12"/>
+    </clipPath>
+    <g clip-path="url(#bannerClip)">
+      <rect x="26" y="24" width="1320" height="222" fill="url(#headerBg)"/>
+      <circle cx="1180" cy="60" r="260" fill="url(#headerGlow)"/>
+      <circle cx="920" cy="220" r="180" fill="url(#headerGlow)"/>
+    </g>
+    <rect x="26" y="24" width="1320" height="222" rx="12" fill="none" stroke="#2d5747" stroke-width="1"/>
+
+    <!-- Eyebrow -->
+    <text x="46" y="53" fill="#9ab5a9" font-size="10.5" font-weight="600" letter-spacing="1.4">ЕЖЕДНЕВНЫЙ ОТЧЁТ БУРЕНИЯ · DRILL SHIFT REPORT</text>
+
+    <!-- Main Title -->
+    <text x="46" y="84" fill="#ffffff" font-size="25" font-weight="700" letter-spacing="-0.3">Сводка буровых работ</text>
+
+    <!-- Subtitle -->
+    <text x="46" y="109" fill="#bfd0c8" font-size="12.5" font-weight="400">Авторасчёт глубин «От / До», метража за смену и накопленного бурения с привязкой к проекту, скважине, станку и смене.</text>
+
+    <!-- Right Action Buttons -->
+    <!-- PDF A4 -->
+    <rect x="976" y="42" width="90" height="34" rx="8" fill="#2c4e42" fill-opacity="0.85" stroke="#4c7062" stroke-width="1"/>
+    <g transform="translate(991, 52)" stroke="#e4ece8" stroke-width="1.5" fill="none">
+      <path d="M3 2h7l3 3v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/>
+      <path d="M9 2v4h4"/>
+    </g>
+    <text x="1012" y="63" fill="#edf4f0" font-size="11.5" font-weight="600">PDF A4</text>
+
+    <!-- Excel / CSV -->
+    <rect x="1074" y="42" width="108" height="34" rx="8" fill="#2c4e42" fill-opacity="0.85" stroke="#4c7062" stroke-width="1"/>
+    <g transform="translate(1088, 52)" stroke="#e4ece8" stroke-width="1.5" fill="none">
+      <rect x="2" y="2" width="12" height="12" rx="1.5"/>
+      <path d="M2 6h12M6 6v8"/>
+    </g>
+    <text x="1109" y="63" fill="#edf4f0" font-size="11.5" font-weight="600">Excel / CSV</text>
+
+    <!-- Импорт из Excel -->
+    <rect x="1190" y="42" width="138" height="34" rx="8" fill="#315548" fill-opacity="0.9" stroke="#557a6b" stroke-width="1"/>
+    <g transform="translate(1204, 52)" stroke="#e4ece8" stroke-width="1.5" fill="none">
+      <path d="M8 2v8m0 0l-3-3m3 3l3-3"/>
+      <path d="M2 11v2a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-2"/>
+    </g>
+    <text x="1224" y="63" fill="#edf4f0" font-size="11.5" font-weight="600">Импорт из Excel</text>
+
+    <!-- 5 KPI Metric Boxes Inside Green Banner -->
+    <!-- Box 1: Записей в выборке -->
+    <rect x="44" y="132" width="244" height="96" rx="10" fill="#234539" fill-opacity="0.78" stroke="#3b6153" stroke-width="1"/>
+    <text x="58" y="152" fill="#9ab5a9" font-size="9.5" font-weight="600" letter-spacing="0.8">ЗАПИСЕЙ В ВЫБОРКЕ</text>
+    <text x="58" y="185" fill="#ffffff" font-size="25" font-weight="700">12</text>
+    <text x="58" y="210" fill="#a8c0b5" font-size="11">Активных смен: 10</text>
+
+    <!-- Box 2: Пробурено за период -->
+    <rect x="302" y="132" width="244" height="96" rx="10" fill="#234539" fill-opacity="0.78" stroke="#3b6153" stroke-width="1"/>
+    <text x="316" y="152" fill="#9ab5a9" font-size="9.5" font-weight="600" letter-spacing="0.8">ПРОБУРЕНО ЗА ПЕРИОД</text>
+    <text x="316" y="185" fill="#ffffff" font-size="25" font-weight="700">550.0 <tspan font-size="18" font-weight="600">м</tspan></text>
+    <text x="316" y="210" fill="#a8c0b5" font-size="11">План: 460.0 м (119.6%)</text>
+
+    <!-- Box 3: Средняя проходка -->
+    <rect x="560" y="132" width="244" height="96" rx="10" fill="#234539" fill-opacity="0.78" stroke="#3b6153" stroke-width="1"/>
+    <text x="574" y="152" fill="#9ab5a9" font-size="9.5" font-weight="600" letter-spacing="0.8">СРЕДНЯЯ ПРОХОДКА</text>
+    <text x="574" y="185" fill="#ffffff" font-size="25" font-weight="700">55.0 <tspan font-size="18" font-weight="600">м</tspan></text>
+    <text x="574" y="210" fill="#a8c0b5" font-size="11">На активную буровую смену</text>
+
+    <!-- Box 4: Накопленный метраж -->
+    <rect x="818" y="132" width="244" height="96" rx="10" fill="#234539" fill-opacity="0.78" stroke="#3b6153" stroke-width="1"/>
+    <text x="832" y="152" fill="#9ab5a9" font-size="9.5" font-weight="600" letter-spacing="0.8">НАКОПЛЕННЫЙ МЕТРАЖ</text>
+    <text x="832" y="185" fill="#ffffff" font-size="25" font-weight="700">550.0 <tspan font-size="18" font-weight="600">м</tspan></text>
+    <text x="832" y="210" fill="#a8c0b5" font-size="11">Скважин в сводке: 1</text>
+
+    <!-- Box 5: Средний выход керна -->
+    <rect x="1076" y="132" width="252" height="96" rx="10" fill="#234539" fill-opacity="0.78" stroke="#3b6153" stroke-width="1"/>
+    <text x="1090" y="152" fill="#9ab5a9" font-size="9.5" font-weight="600" letter-spacing="0.8">СРЕДНИЙ ВЫХОД КЕРНА</text>
+    <text x="1090" y="185" fill="#ffffff" font-size="25" font-weight="700">94.8%</text>
+    <text x="1090" y="210" fill="#a8c0b5" font-size="11">Простои / КНБК: 16.5 ч</text>
+  </g>
+
+  <!-- Filter Controls Row 1 -->
+  <g>
+    <!-- ПРОЕКТ / УЧАСТОК -->
+    <text x="28" y="274" fill="#6b756d" font-size="9.5" font-weight="700" letter-spacing="0.6">ПРОЕКТ / УЧАСТОК</text>
+    <rect x="26" y="282" width="222" height="36" rx="8" fill="#ffffff" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="38" y="304" fill="#1e2d26" font-size="12">Бурабай-Жалгызагаш (Демо)</text>
+    <path d="M232 298l4 4 4-4" stroke="#6c7870" stroke-width="1.5" fill="none"/>
+
+    <!-- СКВАЖИНА -->
+    <text x="262" y="274" fill="#6b756d" font-size="9.5" font-weight="700" letter-spacing="0.6">СКВАЖИНА</text>
+    <rect x="260" y="282" width="222" height="36" rx="8" fill="#ffffff" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="272" y="304" fill="#1e2d26" font-size="12">BUR-26-001 — Бурабай-Жалгыз...</text>
+    <path d="M466 298l4 4 4-4" stroke="#6c7870" stroke-width="1.5" fill="none"/>
+
+    <!-- ПЕРИОД С -->
+    <text x="496" y="274" fill="#6b756d" font-size="9.5" font-weight="700" letter-spacing="0.6">ПЕРИОД С</text>
+    <rect x="494" y="282" width="175" height="36" rx="8" fill="#ffffff" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="506" y="304" fill="#1e2d26" font-size="12">01.05.2026</text>
+    <rect x="647" y="293" width="13" height="13" rx="2" stroke="#5b675f" stroke-width="1.3" fill="none"/>
+    <path d="M647 297h13M650 291v3M657 291v3" stroke="#5b675f" stroke-width="1.3"/>
+
+    <!-- ПЕРИОД ПО -->
+    <text x="683" y="274" fill="#6b756d" font-size="9.5" font-weight="700" letter-spacing="0.6">ПЕРИОД ПО</text>
+    <rect x="681" y="282" width="175" height="36" rx="8" fill="#ffffff" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="693" y="304" fill="#1e2d26" font-size="12">06.05.2026</text>
+    <rect x="834" y="293" width="13" height="13" rx="2" stroke="#5b675f" stroke-width="1.3" fill="none"/>
+    <path d="M834 297h13M837 291v3M844 291v3" stroke="#5b675f" stroke-width="1.3"/>
+
+    <!-- СМЕНА -->
+    <text x="870" y="274" fill="#6b756d" font-size="9.5" font-weight="700" letter-spacing="0.6">СМЕНА</text>
+    <rect x="868" y="282" width="175" height="36" rx="8" fill="#ffffff" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="880" y="304" fill="#1e2d26" font-size="12">Все смены</text>
+    <path d="M1027 298l4 4 4-4" stroke="#6c7870" stroke-width="1.5" fill="none"/>
+
+    <!-- БУРОВОЙ СТАНОК -->
+    <text x="1057" y="274" fill="#6b756d" font-size="9.5" font-weight="700" letter-spacing="0.6">БУРОВОЙ СТАНОК</text>
+    <rect x="1055" y="282" width="175" height="36" rx="8" fill="#ffffff" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="1067" y="304" fill="#1e2d26" font-size="12">Все станки</text>
+    <path d="M1214 298l4 4 4-4" stroke="#6c7870" stroke-width="1.5" fill="none"/>
+
+    <!-- Сбросить -->
+    <rect x="1242" y="282" width="104" height="36" rx="8" fill="#f5f6f1" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="1294" y="304" fill="#2c3d35" font-size="12" font-weight="600" text-anchor="middle">Сбросить</text>
+  </g>
+
+  <!-- Filter Controls Row 2 -->
+  <g>
+    <!-- ПОИСК ПО МАСТЕРУ, ПОДРЯДЧИКУ, ОПЕРАЦИЯМ -->
+    <text x="28" y="344" fill="#6b756d" font-size="9.5" font-weight="700" letter-spacing="0.6">ПОИСК ПО МАСТЕРУ, ПОДРЯДЧИКУ, ОПЕРАЦИЯМ</text>
+    <rect x="26" y="352" width="490" height="36" rx="8" fill="#ffffff" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="38" y="374" fill="#8b948c" font-size="12">Например: Boart Longyear, LF-90D, HQ, цементация, промывка...</text>
+
+    <!-- СТАТУС СМЕНЫ -->
+    <text x="530" y="344" fill="#6b756d" font-size="9.5" font-weight="700" letter-spacing="0.6">СТАТУС СМЕНЫ</text>
+    <rect x="528" y="352" width="220" height="36" rx="8" fill="#ffffff" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="540" y="374" fill="#1e2d26" font-size="12">Все статусы</text>
+    <path d="M732 368l4 4 4-4" stroke="#6c7870" stroke-width="1.5" fill="none"/>
+
+    <!-- + Новая запись -->
+    <rect x="1035" y="352" width="132" height="36" rx="8" fill="#ffffff" stroke="#cfd5cb" stroke-width="1"/>
+    <text x="1101" y="374" fill="#1f342b" font-size="12" font-weight="600" text-anchor="middle">+ Новая запись</text>
+
+    <!-- Заполнить из рейсов скважины -->
+    <rect x="1175" y="352" width="171" height="36" rx="8" fill="#ffffff" stroke="#cfd5cb" stroke-width="1"/>
+    <text x="1260" y="374" fill="#1f342b" font-size="11.5" font-weight="600" text-anchor="middle">Заполнить из рейсов</text>
+  </g>
+
+  <!-- Main Workspace Split: Left Form (648px) & Right Analytics + Table (684px) -->
+  <!-- LEFT CARD: Новая запись буровой смены -->
+  <g filter="url(#cardShadow)">
+    <rect x="14" y="422" width="650" height="446" rx="14" fill="#fafaf7" stroke="#dfded6" stroke-width="1"/>
+  </g>
+
+  <g>
+    <text x="30" y="446" fill="#7c877e" font-size="9.5" font-weight="700" letter-spacing="0.8">КАРТОЧКА СУТОЧНОЙ / СМЕННОЙ СВОДКИ</text>
+    <text x="30" y="469" fill="#162820" font-size="19" font-weight="700" letter-spacing="-0.2">Новая запись буровой смены</text>
+
+    <!-- Выход керна pill -->
+    <rect x="526" y="444" width="122" height="26" rx="13" fill="#e2efe7"/>
+    <text x="587" y="461" fill="#235c3f" font-size="11" font-weight="700" text-anchor="middle">Выход керна: 100%</text>
+
+    <line x1="26" y1="483" x2="650" y2="483" stroke="#e5e6de" stroke-width="1"/>
+
+    <!-- Form Row 1: ПРОЕКТ / УЧАСТОК | СКВАЖИНА | ДАТА СВОДКИ -->
+    <text x="30" y="504" fill="#6b756d" font-size="9.5" font-weight="700" letter-spacing="0.5">ПРОЕКТ / УЧАСТОК</text>
+    <rect x="28" y="511" width="196" height="34" rx="7" fill="#ffffff" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="38" y="532" fill="#1e2d26" font-size="11.5">Бурабай-Жалгызагаш (Демо)</text>
+
+    <text x="238" y="504" fill="#6b756d" font-size="9.5" font-weight="700" letter-spacing="0.5">СКВАЖИНА</text>
+    <rect x="236" y="511" width="196" height="34" rx="7" fill="#ffffff" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="246" y="532" fill="#1e2d26" font-size="11.5">BUR-26-001 (550 м)</text>
+    <path d="M417 526l4 4 4-4" stroke="#6c7870" stroke-width="1.4" fill="none"/>
+
+    <text x="446" y="504" fill="#6b756d" font-size="9.5" font-weight="700" letter-spacing="0.5">ДАТА СВОДКИ</text>
+    <rect x="444" y="511" width="204" height="34" rx="7" fill="#ffffff" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="454" y="532" fill="#1e2d26" font-size="11.5">07.05.2026</text>
+    <rect x="625" y="521" width="12" height="12" rx="2" stroke="#5b675f" stroke-width="1.2" fill="none"/>
+    <path d="M625 525h12" stroke="#5b675f" stroke-width="1.2"/>
+
+    <!-- Form Row 2: СМЕНА | БУРОВОЙ СТАНОК | ДИАМЕТР / КОРОНКА -->
+    <text x="30" y="566" fill="#6b756d" font-size="9.5" font-weight="700" letter-spacing="0.5">СМЕНА</text>
+    <rect x="28" y="573" width="196" height="34" rx="7" fill="#ffffff" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="38" y="594" fill="#1e2d26" font-size="11.5">Смена I (дневная 08:00–20:00)</text>
+    <path d="M209 588l4 4 4-4" stroke="#6c7870" stroke-width="1.4" fill="none"/>
+
+    <text x="238" y="566" fill="#6b756d" font-size="9.5" font-weight="700" letter-spacing="0.5">БУРОВОЙ СТАНОК</text>
+    <rect x="236" y="573" width="196" height="34" rx="7" fill="#ffffff" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="246" y="594" fill="#1e2d26" font-size="11.5">Boart Longyear LF-90D #1</text>
+
+    <text x="446" y="566" fill="#6b756d" font-size="9.5" font-weight="700" letter-spacing="0.5">ДИАМЕТР / КОРОНКА</text>
+    <rect x="444" y="573" width="204" height="34" rx="7" fill="#ffffff" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="454" y="594" fill="#1e2d26" font-size="11.5">HQ</text>
+
+    <!-- Form Row 3: ПОДРЯДЧИК | БУРОВОЙ МАСТЕР | ГЕОЛОГ СМЕНЫ -->
+    <text x="30" y="628" fill="#6b756d" font-size="9.5" font-weight="700" letter-spacing="0.5">ПОДРЯДЧИК</text>
+    <rect x="28" y="635" width="196" height="34" rx="7" fill="#ffffff" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="38" y="656" fill="#1e2d26" font-size="11.5">ТОО «QazDrill Service»</text>
+
+    <text x="238" y="628" fill="#6b756d" font-size="9.5" font-weight="700" letter-spacing="0.5">БУРОВОЙ МАСТЕР</text>
+    <rect x="236" y="635" width="196" height="34" rx="7" fill="#ffffff" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="246" y="656" fill="#8b948c" font-size="11.5">ФИО бурового мастера</text>
+
+    <text x="446" y="628" fill="#6b756d" font-size="9.5" font-weight="700" letter-spacing="0.5">ГЕОЛОГ СМЕНЫ</text>
+    <rect x="444" y="635" width="204" height="34" rx="7" fill="#ffffff" stroke="#d5d8cf" stroke-width="1"/>
+    <text x="454" y="656" fill="#1e2d26" font-size="11.5">Демонстрация</text>
+
+    <!-- Subcard: АВТОРАСЧЁТ ГЛУБИН И ПРОХОДКИ (М) -->
+    <rect x="28" y="684" width="620" height="122" rx="10" fill="#f1f4ed" stroke="#d8dfd2" stroke-width="1"/>
+    <text x="42" y="704" fill="#2a4b3c" font-size="10" font-weight="700" letter-spacing="0.6">АВТОРАСЧЁТ ГЛУБИН И ПРОХОДКИ (М)</text>
+    <text x="424" y="704" fill="#68786e" font-size="10.5">Проектная глубина: <tspan font-weight="700" fill="#1e2d26">550 м</tspan> · Остаток: <tspan font-weight="700" fill="#1e2d26">0.0 м</tspan></text>
+
+    <!-- 4 Subcard inputs: ОТ, М | ДО, М | ПРОБУРЕНО ЗА СМЕНУ, М | НАКОПЛЕННЫЙ МЕТРАЖ, М -->
+    <text x="42" y="724" fill="#6b756d" font-size="9" font-weight="700">ОТ, М</text>
+    <rect x="42" y="730" width="136" height="32" rx="6" fill="#ffffff" stroke="#cfd6ca" stroke-width="1"/>
+    <text x="52" y="750" fill="#1e2d26" font-size="12" font-weight="600">550</text>
+
+    <text x="192" y="724" fill="#6b756d" font-size="9" font-weight="700">ДО, М</text>
+    <rect x="192" y="730" width="136" height="32" rx="6" fill="#ffffff" stroke="#cfd6ca" stroke-width="1"/>
+    <text x="202" y="750" fill="#1e2d26" font-size="12" font-weight="600">550</text>
+
+    <text x="342" y="724" fill="#6b756d" font-size="9" font-weight="700">ПРОБУРЕНО ЗА СМЕНУ, М</text>
+    <rect x="342" y="730" width="138" height="32" rx="6" fill="#ffffff" stroke="#cfd6ca" stroke-width="1"/>
+    <text x="352" y="750" fill="#1e2d26" font-size="12" font-weight="600">0</text>
+
+    <text x="494" y="724" fill="#6b756d" font-size="9" font-weight="700">НАКОПЛЕННЫЙ МЕТРАЖ, М</text>
+    <rect x="494" y="730" width="142" height="32" rx="6" fill="#ffffff" stroke="#cfd6ca" stroke-width="1"/>
+    <text x="504" y="750" fill="#1e2d26" font-size="12" font-weight="600">550</text>
+
+    <!-- Subcard Row 2 labels -->
+    <text x="42" y="782" fill="#6b756d" font-size="9" font-weight="700">ПЛАН ЗА СМЕНУ, М</text>
+    <rect x="42" y="787" width="136" height="18" rx="4" fill="#ffffff" stroke="#cfd6ca" stroke-width="1"/>
+    <text x="52" y="799" fill="#1e2d26" font-size="10.5">45.0</text>
+
+    <text x="192" y="782" fill="#6b756d" font-size="9" font-weight="700">ВЫХОД КЕРНА, М</text>
+    <rect x="192" y="787" width="136" height="18" rx="4" fill="#ffffff" stroke="#cfd6ca" stroke-width="1"/>
+    <text x="202" y="799" fill="#1e2d26" font-size="10.5">0.0</text>
+
+    <text x="342" y="782" fill="#6b756d" font-size="9" font-weight="700">ВЫХОД КЕРНА, %</text>
+    <rect x="342" y="787" width="138" height="18" rx="4" fill="#ffffff" stroke="#cfd6ca" stroke-width="1"/>
+    <text x="352" y="799" fill="#1e2d26" font-size="10.5">100%</text>
+
+    <text x="494" y="782" fill="#6b756d" font-size="9" font-weight="700">СКОРОСТЬ БУРЕНИЯ, М/Ч</text>
+    <rect x="494" y="787" width="142" height="18" rx="4" fill="#ffffff" stroke="#cfd6ca" stroke-width="1"/>
+    <text x="504" y="799" fill="#1e2d26" font-size="10.5">4.8</text>
+
+    <!-- Save Button Row -->
+    <rect x="28" y="818" width="214" height="36" rx="8" fill="url(#greenBtn)"/>
+    <text x="135" y="840" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">Сохранить запись сводки</text>
+
+    <rect x="252" y="818" width="144" height="36" rx="8" fill="#ffffff" stroke="#cfd5cb" stroke-width="1"/>
+    <text x="324" y="840" fill="#2c3d35" font-size="12" font-weight="600" text-anchor="middle">Очистить форму</text>
+  </g>
+
+  <!-- RIGHT TOP CARD: Прогресс по скважинам и динамика по дням -->
+  <g filter="url(#cardShadow)">
+    <rect x="676" y="422" width="682" height="222" rx="14" fill="#fafaf7" stroke="#dfded6" stroke-width="1"/>
+  </g>
+
+  <g>
+    <text x="694" y="446" fill="#7c877e" font-size="9.5" font-weight="700" letter-spacing="0.8">АНАЛИТИКА ПРОХОДКИ</text>
+    <text x="694" y="468" fill="#162820" font-size="17" font-weight="700" letter-spacing="-0.2">Прогресс по скважинам и динамика по дням</text>
+    <text x="1256" y="464" fill="#7c877e" font-size="11">1 скважин · 6 дат</text>
+
+    <!-- Borehole Progress Subcard -->
+    <rect x="692" y="482" width="650" height="72" rx="10" fill="#f3f5ef" stroke="#dfe3da" stroke-width="1"/>
+    <text x="706" y="502" fill="#162820" font-size="13" font-weight="700">BUR-26-001</text>
+    <text x="785" y="502" fill="#6c7870" font-size="11.5">· Бурабай-Жалгызагаш (Демо)</text>
+    <text x="1220" y="502" fill="#162820" font-size="12" font-weight="700">550.0 / 550 м (100%)</text>
+
+    <!-- Full Green Progress Bar -->
+    <rect x="706" y="512" width="622" height="8" rx="4" fill="#dce3d8"/>
+    <rect x="706" y="512" width="622" height="8" rx="4" fill="#255442"/>
+
+    <text x="706" y="538" fill="#6b756d" font-size="10.5">Пробурено в выборке: 550.0 м</text>
+    <text x="960" y="538" fill="#6b756d" font-size="10.5">Смен: 12</text>
+    <text x="1148" y="538" fill="#6b756d" font-size="10.5">Последняя дата: 06.05.2026</text>
+
+    <!-- 6 Daily Mini Cards -->
+    <!-- 01.05.2026 -->
+    <rect x="692" y="564" width="101" height="68" rx="8" fill="#ffffff" stroke="#e1e4dc" stroke-width="1"/>
+    <text x="701" y="580" fill="#6b756d" font-size="10" font-weight="600">01.05.2026</text>
+    <rect x="701" y="587" width="82" height="5" rx="2.5" fill="#e5e9e2"/>
+    <rect x="701" y="587" width="76" height="5" rx="2.5" fill="#255442"/>
+    <text x="701" y="608" fill="#162820" font-size="12" font-weight="700">96.0 м</text>
+    <text x="701" y="622" fill="#7c877e" font-size="9.5">План: 90.0 м</text>
+
+    <!-- 02.05.2026 -->
+    <rect x="801" y="564" width="101" height="68" rx="8" fill="#ffffff" stroke="#e1e4dc" stroke-width="1"/>
+    <text x="810" y="580" fill="#6b756d" font-size="10" font-weight="600">02.05.2026</text>
+    <rect x="810" y="587" width="82" height="5" rx="2.5" fill="#e5e9e2"/>
+    <rect x="810" y="587" width="82" height="5" rx="2.5" fill="#255442"/>
+    <text x="810" y="608" fill="#162820" font-size="12" font-weight="700">112.0 м</text>
+    <text x="810" y="622" fill="#7c877e" font-size="9.5">План: 90.0 м</text>
+
+    <!-- 03.05.2026 -->
+    <rect x="910" y="564" width="101" height="68" rx="8" fill="#ffffff" stroke="#e1e4dc" stroke-width="1"/>
+    <text x="919" y="580" fill="#6b756d" font-size="10" font-weight="600">03.05.2026</text>
+    <rect x="919" y="587" width="82" height="5" rx="2.5" fill="#e5e9e2"/>
+    <rect x="919" y="587" width="52" height="5" rx="2.5" fill="#255442"/>
+    <text x="919" y="608" fill="#162820" font-size="12" font-weight="700">57.0 м</text>
+    <text x="919" y="622" fill="#7c877e" font-size="9.5">План: 50.0 м</text>
+
+    <!-- 04.05.2026 -->
+    <rect x="1019" y="564" width="101" height="68" rx="8" fill="#ffffff" stroke="#e1e4dc" stroke-width="1"/>
+    <text x="1028" y="580" fill="#6b756d" font-size="10" font-weight="600">04.05.2026</text>
+    <rect x="1028" y="587" width="82" height="5" rx="2.5" fill="#e5e9e2"/>
+    <rect x="1028" y="587" width="82" height="5" rx="2.5" fill="#255442"/>
+    <text x="1028" y="608" fill="#162820" font-size="12" font-weight="700">115.0 м</text>
+    <text x="1028" y="622" fill="#7c877e" font-size="9.5">План: 100.0 м</text>
+
+    <!-- 05.05.2026 -->
+    <rect x="1128" y="564" width="101" height="68" rx="8" fill="#ffffff" stroke="#e1e4dc" stroke-width="1"/>
+    <text x="1137" y="580" fill="#6b756d" font-size="10" font-weight="600">05.05.2026</text>
+    <rect x="1137" y="587" width="82" height="5" rx="2.5" fill="#e5e9e2"/>
+    <rect x="1137" y="587" width="82" height="5" rx="2.5" fill="#255442"/>
+    <text x="1137" y="608" fill="#162820" font-size="12" font-weight="700">110.0 м</text>
+    <text x="1137" y="622" fill="#7c877e" font-size="9.5">План: 100.0 м</text>
+
+    <!-- 06.05.2026 -->
+    <rect x="1237" y="564" width="105" height="68" rx="8" fill="#ffffff" stroke="#e1e4dc" stroke-width="1"/>
+    <text x="1246" y="580" fill="#6b756d" font-size="10" font-weight="600">06.05.2026</text>
+    <rect x="1246" y="587" width="84" height="5" rx="2.5" fill="#e5e9e2"/>
+    <rect x="1246" y="587" width="54" height="5" rx="2.5" fill="#255442"/>
+    <text x="1246" y="608" fill="#162820" font-size="12" font-weight="700">60.0 м</text>
+    <text x="1246" y="622" fill="#7c877e" font-size="9.5">План: 30.0 м</text>
+  </g>
+
+  <!-- RIGHT BOTTOM CARD: Ведомость сменных сводок -->
+  <g filter="url(#cardShadow)">
+    <rect x="676" y="656" width="682" height="212" rx="14" fill="#fafaf7" stroke="#dfded6" stroke-width="1"/>
+  </g>
+
+  <g>
+    <text x="694" y="680" fill="#7c877e" font-size="9.5" font-weight="700" letter-spacing="0.8">ЖУРНАЛ ЕЖЕДНЕВНЫХ СВОДОК</text>
+    <text x="694" y="702" fill="#162820" font-size="17" font-weight="700" letter-spacing="-0.2">Ведомость сменных сводок (12)</text>
+
+    <!-- Clear Demo Button -->
+    <rect x="1220" y="675" width="122" height="28" rx="7" fill="#ffffff" stroke="#e2c6c2" stroke-width="1"/>
+    <text x="1281" y="693" fill="#a93b32" font-size="10.5" font-weight="600" text-anchor="middle">Очистить демо</text>
+
+    <!-- Table Header -->
+    <rect x="688" y="714" width="658" height="28" fill="#f1f3ec"/>
+    <text x="696" y="732" fill="#6b756d" font-size="9" font-weight="700">ДАТА / СМЕНА</text>
+    <text x="780" y="732" fill="#6b756d" font-size="9" font-weight="700">СКВАЖИНА / СТАНОК</text>
+    <text x="900" y="732" fill="#6b756d" font-size="9" font-weight="700">ОТ–ДО, М</text>
+    <text x="974" y="732" fill="#6b756d" font-size="9" font-weight="700">ЗА СМЕНУ</text>
+    <text x="1044" y="732" fill="#6b756d" font-size="9" font-weight="700">НАКОПЛ.</text>
+    <text x="1108" y="732" fill="#6b756d" font-size="9" font-weight="700">КЕРН</text>
+    <text x="1164" y="732" fill="#6b756d" font-size="9" font-weight="700">СТАТУС / ОПЕРАЦИИ</text>
+    <text x="1294" y="732" fill="#6b756d" font-size="9" font-weight="700">ДЕЙСТВИЯ</text>
+
+    <!-- Table Row 1: 06.05.2026 Смена II -->
+    <line x1="688" y1="742" x2="1346" y2="742" stroke="#e5e7df" stroke-width="1"/>
+    <text x="696" y="762" fill="#162820" font-size="11" font-weight="700">06.05.2026</text>
+    <text x="696" y="777" fill="#6b756d" font-size="9.5">Смена II (ночная)</text>
+
+    <text x="780" y="762" fill="#162820" font-size="11" font-weight="700">BUR-26-001</text>
+    <text x="780" y="777" fill="#6b756d" font-size="9.5">Boart Longyear LF-90D #1</text>
+    <text x="780" y="790" fill="#8b948c" font-size="9">NQ · Сериков А.К.</text>
+
+    <text x="900" y="766" fill="#162820" font-size="10.5" font-weight="600">550.0 – 550.0</text>
+    <text x="974" y="762" fill="#235c3f" font-size="11" font-weight="700">+0.0 м</text>
+    <text x="974" y="776" fill="#7c877e" font-size="9">план 0.0 м</text>
+
+    <text x="1044" y="766" fill="#162820" font-size="11" font-weight="700">550.0 м</text>
+    <text x="1108" y="762" fill="#162820" font-size="11" font-weight="700">100.0%</text>
+    <text x="1108" y="776" fill="#7c877e" font-size="9">0.0 м</text>
+
+    <rect x="1164" y="749" width="70" height="18" rx="9" fill="#e2efe7"/>
+    <text x="1199" y="761" fill="#235c3f" font-size="9" font-weight="700" text-anchor="middle">Завершена</text>
+    <text x="1164" y="778" fill="#5b675f" font-size="9">Контрольный замер глубины 550.0 м,</text>
+    <text x="1164" y="790" fill="#5b675f" font-size="9">инклинометрия, консервация устья.</text>
+
+    <rect x="1294" y="752" width="44" height="22" rx="5" fill="#ffffff" stroke="#d5d8cf"/>
+    <text x="1316" y="766" fill="#2c3d35" font-size="9.5" font-weight="600" text-anchor="middle">Изм.</text>
+
+    <!-- Table Row 2: 06.05.2026 Смена I -->
+    <line x1="688" y1="802" x2="1346" y2="802" stroke="#e5e7df" stroke-width="1"/>
+    <text x="696" y="822" fill="#162820" font-size="11" font-weight="700">06.05.2026</text>
+    <text x="696" y="837" fill="#6b756d" font-size="9.5">Смена I (дневная)</text>
+
+    <text x="780" y="822" fill="#162820" font-size="11" font-weight="700">BUR-26-001</text>
+    <text x="780" y="837" fill="#6b756d" font-size="9.5">Boart Longyear LF-90D #1</text>
+    <text x="780" y="850" fill="#8b948c" font-size="9">NQ · Оспанов М.Т.</text>
+
+    <text x="900" y="826" fill="#162820" font-size="10.5" font-weight="600">490.0 – 550.0</text>
+    <text x="974" y="822" fill="#235c3f" font-size="11" font-weight="700">+60.0 м</text>
+    <text x="974" y="836" fill="#7c877e" font-size="9">план 30.0 м</text>
+
+    <text x="1044" y="826" fill="#162820" font-size="11" font-weight="700">550.0 м</text>
+    <text x="1108" y="822" fill="#162820" font-size="11" font-weight="700">96.2%</text>
+    <text x="1108" y="836" fill="#7c877e" font-size="9">57.7 м</text>
+
+    <rect x="1164" y="809" width="60" height="18" rx="9" fill="#e2efe7"/>
+    <text x="1194" y="821" fill="#235c3f" font-size="9" font-weight="700" text-anchor="middle">Бурение</text>
+    <text x="1164" y="838" fill="#5b675f" font-size="9">Достижение проектной глубины 550.0 м</text>
+    <text x="1164" y="850" fill="#5b675f" font-size="9">в неизменённых гранодиоритах.</text>
+
+    <rect x="1294" y="812" width="44" height="22" rx="5" fill="#ffffff" stroke="#d5d8cf"/>
+    <text x="1316" y="826" fill="#2c3d35" font-size="9.5" font-weight="600" text-anchor="middle">Изм.</text>
+  </g>
+</svg>

@@ -132,6 +132,18 @@ export const translations = {
           caption: "Реальный модуль опробования · BUR-26-001",
         },
         {
+          name: "Ежедневные сводки",
+          title: "Сводка буровых работ и аналитика смен.",
+          text: "Авторасчёт глубин «От / До», метража за смену и накопленного бурения с привязкой к проекту, скважине, буровому станку и смене. Динамика проходки по дням, ведомость смен и выгрузка в PDF A4 / Excel.",
+          points: [
+            "Авторасчёт проходки, накопленного метража и выхода керна",
+            "Прогресс по скважинам и суточная динамика бурения (план / факт)",
+            "Импорт из рейсов скважины или Excel, экспорт в PDF A4 и CSV",
+          ],
+          image: "daily-reports-ui.svg",
+          caption: "Реальная сводка буровых работ · BUR-26-001",
+        },
+        {
           name: "Документы",
           title: "Формирование производственных актов.",
           text: "Генератор формирует акты на основе паспорта скважины, рейсов и замеров. Ниже можно рассмотреть исходные формы A4 и скачать полный PDF, сформированный приложением.",
@@ -249,8 +261,8 @@ export const translations = {
         ],
         [
           "05",
-          "Документация и контроль",
-          "Акты по скважине, лабораторные формы, проверка интервалов, сводки и видимые статусы синхронизации.",
+          "Ежедневные сводки и акты",
+          "Сводка буровых работ по сменам, авторасчёт глубин и проходки, производственные акты A4, лабораторные формы и статусы синхронизации.",
         ],
       ] as [string, string, string][],
     },
@@ -451,6 +463,18 @@ export const translations = {
           caption: "Сынама алудың нақты модулі · BUR-26-001",
         },
         {
+          name: "Күнделікті мәліметтер",
+          title: "Бұрғылау жұмыстарының мәліметі және ауысым аналитикасы.",
+          text: "Жобаға, ұңғымаға, бұрғылау станогына және ауысымға байланыстыра отырып, «Бастап / Дейін» тереңдіктерін, ауысымдағы метражды және жинақталған бұрғылауды автоесептеу. Күндер бойынша өтім динамикасы және PDF A4 / Excel экспорты.",
+          points: [
+            "Өтімді, жинақталған метражды және керн шығымын автоесептеу",
+            "Ұңғымалар бойынша прогресс және тәуліктік бұрғылау динамикасы (жоспар / факт)",
+            "Ұңғыма рейстерінен немесе Excel-ден импорттау, PDF A4 және CSV экспорты",
+          ],
+          image: "daily-reports-ui.svg",
+          caption: "Бұрғылау жұмыстарының нақты мәліметі · BUR-26-001",
+        },
+        {
           name: "Құжаттар",
           title: "Өндірістік актілерді қалыптастыру.",
           text: "Генератор ұңғыма төлқұжаты, рейстер мен өлшемдер негізінде актілерді қалыптастырады. Төменде A4 бастапқы нысандарын қарап, қосымша жасаған толық PDF файлын жүктеپ алуға болады.",
@@ -568,8 +592,8 @@ export const translations = {
         ],
         [
           "05",
-          "Құжаттама және бақылау",
-          "Ұңғыма бойынша актілер, зертханалық нысандар, интервалдарды тексеру, мәліметтер және синхрондау мәртебелері.",
+          "Күнделікті мәліметтер мен актілер",
+          "Ауысым бойынша бұрғылау мәліметтері, тереңдік пен өтімді автоесептеу, A4 өндірістік актілері, зертханалық нысандар және синхрондау мәртебелері.",
         ],
       ] as [string, string, string][],
     },
@@ -769,6 +793,18 @@ export const translations = {
           caption: "Actual sampling & QA/QC module · BUR-26-001",
         },
         {
+          name: "Daily Reports",
+          title: "Daily drilling shift reports & progress analytics.",
+          text: "Automatic calculation of From / To depths, shift advance, and cumulative footage linked to project, drillhole, rig, and shift. Daily drilling dynamics, shift logbook, and PDF A4 / Excel exports.",
+          points: [
+            "Auto-calculated shift advance, cumulative meters, and core recovery",
+            "Borehole progress tracking and daily plan vs. actual dynamics",
+            "Populate from drill runs or Excel, export to PDF A4 and CSV",
+          ],
+          image: "daily-reports-ui.svg",
+          caption: "Actual drill shift report · BUR-26-001",
+        },
+        {
           name: "Documents",
           title: "Automated statutory drillhole acts.",
           text: "The generator compiles official certificates from collar data, runs, and depth checks. Inspect the A4 sheets below or download the complete PDF.",
@@ -886,8 +922,8 @@ export const translations = {
         ],
         [
           "05",
-          "Documentation & control",
-          "Drillhole certificates, lab submittal sheets, interval validation, summaries, and visible sync states.",
+          "Daily reports & certificates",
+          "Shift drilling reports, automated depth and advance calculations, statutory A4 certificates, lab submittal sheets, and visible sync states.",
         ],
       ] as [string, string, string][],
     },

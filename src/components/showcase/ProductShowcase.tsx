@@ -4,6 +4,7 @@ import {
   Map,
   Layers3,
   Microscope,
+  CalendarClock,
   FileCheck2,
   ArrowUpRight,
   Check,
@@ -14,7 +15,14 @@ import {
 } from "lucide-react";
 import { useI18n } from "../../i18n";
 
-const tabIcons = [FolderClosed, Map, Layers3, Microscope, FileCheck2];
+const tabIcons = [
+  FolderClosed,
+  Map,
+  Layers3,
+  Microscope,
+  CalendarClock,
+  FileCheck2,
+];
 
 export function ImageViewer({
   src,
@@ -142,7 +150,9 @@ export function ProductShowcase() {
           aria-labelledby={`tab-${active}`}
         >
           <div className="product-copy">
-            <span className="panel-number mono">0{active + 1} / 05</span>
+            <span className="panel-number mono">
+              0{active + 1} / 0{tabs.length}
+            </span>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
             <ul>
